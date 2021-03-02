@@ -33,6 +33,9 @@ function lineCount($file, $handle) {
 
 $vowels = array('A', 'E', 'I', 'O', 'U');
 $file = '../data/text.txt';
+if (!file_exists($file)) {
+    die("FILE NOT FOUND");
+}
 $handle = fopen($file, 'r');
 $arr = phonicsCount($handle, $vowels, $file);
 $nCharNoSpace = charactersNoSpaceCount($handle, $file);
