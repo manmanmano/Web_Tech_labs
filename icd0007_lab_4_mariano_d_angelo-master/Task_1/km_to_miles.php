@@ -7,7 +7,9 @@ function getKey($testKey, &$arr) {
             $testKeyCounter++;
             $testKey .= chr(64 + $testKeyCounter);
         } 
-        return $testKey;
+        else {
+            return $testKey;
+        }
     }
 }
 
@@ -31,8 +33,9 @@ printf("\n");
 
 $arrMiles = [];
 for ($i = 0; $i < sizeof($arrDistances); $i++) {
-    $arrMiles[getKey($arrDistances[$i], $arrMiles)] = $arrDistances[$i] / KM_TO_MILES;
+    $arrMiles[getKey($arrDistances[$i], $arrMiles)] = intval($arrDistances[$i], 10) / KM_TO_MILES;
 }
+print_r($arrMiles);
 
 printf("\nKM\tMILES\n");
 foreach ($arrMiles as $key => $value) {
