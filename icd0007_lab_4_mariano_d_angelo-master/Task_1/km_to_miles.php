@@ -33,7 +33,7 @@ printf("\n");
 
 $arrMiles = [];
 for ($i = 0; $i < sizeof($arrDistances); $i++) {
-    $arrMiles[getKey($arrDistances[$i], $arrMiles)] = intval($arrDistances[$i], 10) / KM_TO_MILES;
+    $arrMiles[getKey($arrDistances[$i], $arrMiles)] = $arrDistances[$i] / KM_TO_MILES;
 }
 print_r($arrMiles);
 
