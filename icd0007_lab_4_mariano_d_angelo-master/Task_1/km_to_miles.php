@@ -29,15 +29,11 @@ printf("\n");
 
 sort($arrDistances);
 print_r($arrDistances);
-
-foreach ($arrDistances as $value) {
-    getKey($key, $arrDistances); 
-}
-
 printf("\n");
+
 $arrMiles = [];
 for ($i = 0; $i < sizeof($arrDistances); $i++) {
-    $arrMiles[$arrDistances[$i]] = $arrDistances[$i] / KM_TO_MILES;
+    $arrMiles[getKey($arrDistances[$i], $arrMiles)] = $arrDistances[$i] / KM_TO_MILES;
 }
 
 printf("\nKM\tMILES\n");
