@@ -1,16 +1,14 @@
 <?php
 
 function getKey($testKey, &$arr) {
-    for ($i = 0; $i < sizeof($arr); $i++) {
-        $testKeyCounter = 0; //counts eventual repetitions 
-        if ($testKey === $arr[$i]) {
+    $testKeyCounter = 0;
+    for (; 1;) {
+        if (array_key_exists($testKey, $arr)) {
             $testKeyCounter++;
-        }
-        if ($testKeyCounter > 1) { 
-		    $arr[$i] .= chr(64 + $testKeyCounter);
-            }
+            $testKey .= chr(64 + $testKeyCounter);
+        } 
+        return $testKey;
     }
-    return $testKey;
 }
 
 error_reporting(1);
