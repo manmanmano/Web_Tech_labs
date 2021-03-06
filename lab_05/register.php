@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+	<link rel="stylesheet" type="text/css" href="styles/nice.css">
 </head>
 <body>
 	<h1>Register now!</h2>
@@ -16,11 +17,11 @@
 		<input type="text" class="name" pattern="[A-Za-z]{1,}" required placeholder="Enter your first name"><br>
 		<label for="middle-name">Middle name:</label>
 		<input type="text" class="name" pattern="[A-Za-z]{1,}" required placeholder="Enter your middle name"><br>
-		<label for="last-name">Last name:<label>
+		<label for="last-name">Last name:</label>
 		<input type="text" class="name" pattern="[A-Za-z]{1,}" required placeholder="Enter your last name"><br>
 		<label for="salutation-select">Choose salutation:</label>
 		<select id="salutation" required>
-			<option value="">--Please choose an adequate salutation--</option>
+			<option value="">--Salutation--</option>
 			<option value="mr">Mr</option>
 			<option value="ms">Ms</option>
 			<option value="mrs">Mrs</option>
@@ -32,7 +33,7 @@
 		<input type="number" id="age" name="age" min="17" max="120" required><br>
 		<label for="email">e-mail:</label>
 		<input type="email" id="email" name="email" required placeholder="Enter a valid email address"><br>
-		<label for="contact-phone">Contact phone</label>
+		<label for="contact-phone">Contact phone:</label>
 		<input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9,+]{1,3} [0-9]{3} [0-9]{3}" placeholder="Pattern: 000 000 000"><br>
 		<label for="arrival">Date of arrival:</label>
 		<input type="date" id="arrival" name="arrival" min="<?php echo date("Y-m-d"); ?>" required><br>
