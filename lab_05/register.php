@@ -11,12 +11,22 @@
 <body>
 	<h1>Register now!</h2>
 	<form action="#" method="POST" id="data">
-		<label for="firstName">First name:</label>
+		<label for="first-name">First name:</label>
 		<input type="text" class="name" required placeholder="Enter your first name"><br>
-		<label for="middleName">Middle name:</label>
+		<label for="middle-name">Middle name:</label>
 		<input type="text" class="name" required placeholder="Enter your middle name"><br>
-		<label for="lastName">Last name:<label>
+		<label for="last-name">Last name:<label>
 		<input type="text" class="name" required placeholder="Enter your last name"><br>
+		<label for="salutation-select">Choose salutation:</label>
+		<select id="salutation" size="3" required>
+			<option value="">--Please choose an adequate salutation--</option>
+			<option value="mr">Mr</option>
+			<option value="ms">Ms</option>
+			<option value="mrs">Mrs</option>
+			<option value="sir">Sir</option>
+			<option value="prof">Prof</option>
+			<option value="dr">Dr</option>
+		</select>
 	</form>
 </body>
 </html>
