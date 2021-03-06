@@ -6,6 +6,7 @@ body {
 }
 h1 {
 	font-size: 50px;
+	margin-left: 150px;
 }
 form {
 	background-color: #ffff80;
@@ -29,4 +30,8 @@ input, select {
 }
 input[type="submit"] {
 	margin-left: 120px;
+}
+input[type="submit"]:hover {
+		background-color: yellowgreen;
+		font-weight: bold;
 }
