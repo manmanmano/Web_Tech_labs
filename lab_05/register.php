@@ -18,7 +18,7 @@
 		<label for="last-name">Last name:<label>
 		<input type="text" class="name" required placeholder="Enter your last name"><br>
 		<label for="salutation-select">Choose salutation:</label>
-		<select id="salutation" size="3" required>
+		<select id="salutation" required>
 			<option value="">--Please choose an adequate salutation--</option>
 			<option value="mr">Mr</option>
 			<option value="ms">Ms</option>
