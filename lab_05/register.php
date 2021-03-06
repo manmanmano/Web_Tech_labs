@@ -34,7 +34,7 @@
 		<label for="contact-phone">Contact phone</label>
 		<input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9,+]{1,3} [0-9]{3} [0-9]{3}" placeholder="Pattern: 000 000 000"><br>
 		<label for="arrival">Date of arrival:</label>
-		<input type="date" id="arrival" name="arrival" min="<?php echo date("Y-m-d"); ?>"  max="2024-12-31" required><br>
+		<input type="date" id="arrival" name="arrival" min="<?php echo date("Y-m-d"); ?>" required><br>
 		<input type="submit" value="Submit">
 	</form>
 </body>
