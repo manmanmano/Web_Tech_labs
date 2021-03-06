@@ -27,6 +27,8 @@
 			<option value="prof">Prof</option>
 			<option value="dr">Dr</option>
 		</select>
+		<label for="age">Age:</label>
+		<input type="number" id="age" name="age" min="17" max="120" required><br>
 	</form>
 </body>
 </html>
