@@ -1,4 +1,5 @@
 <?php
+
 ?>
 
 <!DOCTYPE html>
@@ -12,11 +13,11 @@
 	<h1>Register now!</h2>
 	<form action="#" method="POST" id="data">
 		<label for="first-name">First name:</label>
-		<input type="text" class="name" required placeholder="Enter your first name"><br>
+		<input type="text" class="name" pattern="[A-Za-z]{1,}" required placeholder="Enter your first name"><br>
 		<label for="middle-name">Middle name:</label>
-		<input type="text" class="name" required placeholder="Enter your middle name"><br>
+		<input type="text" class="name" pattern="[A-Za-z]{1,}" required placeholder="Enter your middle name"><br>
 		<label for="last-name">Last name:<label>
-		<input type="text" class="name" required placeholder="Enter your last name"><br>
+		<input type="text" class="name" pattern="[A-Za-z]{1,}" required placeholder="Enter your last name"><br>
 		<label for="salutation-select">Choose salutation:</label>
 		<select id="salutation" required>
 			<option value="">--Please choose an adequate salutation--</option>
