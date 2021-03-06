@@ -9,6 +9,14 @@
     <title>Register</title>
 </head>
 <body>
-	Here goes some text
+	<h1>Register now!</h2>
+	<form action="#" method="POST" id="data">
+		<label for="firstName">First name:</label>
+		<input type="text" class="name" required placeholder="Enter your first name"><br>
+		<label for="middleName">Middle name:</label>
+		<input type="text" class="name" required placeholder="Enter your middle name"><br>
+		<label for="lastName">Last name:<label>
+		<input type="text" class="name" required placeholder="Enter your last name"><br>
+	</form>
 </body>
 </html>
