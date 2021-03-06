@@ -29,6 +29,9 @@
 		</select><br>
 		<label for="age">Age:</label>
 		<input type="number" id="age" name="age" min="17" max="120" required><br>
+		<input type="email">e-mail:<br>
+		<input type="email" id="email" name="email" required placeholder="Enter a valid email address"><br>
+		
 	</form>
 </body>
 </html>
