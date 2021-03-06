@@ -31,7 +31,8 @@
 		<input type="number" id="age" name="age" min="17" max="120" required><br>
 		<label for="email">e-mail:</label>
 		<input type="email" id="email" name="email" required placeholder="Enter a valid email address"><br>
-		
+		<label for="contact-phone">Contact phone</label>
+		<input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9,+]{1,3} [0-9]{3} [0-9]{3}" required placeholder="Phone number as 000 000 000">
 	</form>
 </body>
 </html>
