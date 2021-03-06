@@ -37,9 +37,9 @@ for ($i = 0; $i < sizeof($arrDistances); $i++) {
 }
 print_r($arrMiles);
 
-printf("\nKM\tMILES\n");
+printf("\n%10s%10s\n", "KM", "MILES");
 foreach ($arrMiles as $key => $value) {
-    printf("\n%d\t%0.3f\n", $key, $value);
+    printf("\n%10d%10.3f\n", $key, $value);
 }
 printf("\n");
 
