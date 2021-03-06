@@ -35,6 +35,7 @@
 		<input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9,+]{1,3} [0-9]{3} [0-9]{3}" placeholder="Pattern: 000 000 000"><br>
 		<label for="arrival">Date of arrival:</label>
 		<input type="date" id="arrival" name="arrival" max="2024-12-31" required><br>
+		<input type="submit" value="Submit">
 	</form>
 </body>
 </html>
