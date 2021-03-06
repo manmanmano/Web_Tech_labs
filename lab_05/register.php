@@ -33,7 +33,8 @@
 		<input type="email" id="email" name="email" required placeholder="Enter a valid email address"><br>
 		<label for="contact-phone">Contact phone</label>
 		<input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9,+]{1,3} [0-9]{3} [0-9]{3}" placeholder="Pattern: 000 000 000">
-
+		<label for="arrival">Date of arrival:</label>
+		<input type="date" id="arrival" name="arrival" max="2024-12-31" required><br>
 	</form>
 </body>
 </html>
