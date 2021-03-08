@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST['submit'])) {
     if (preg_match("/^[a-zA-Z' ]+$/", $_POST['first-name'])) {
@@ -8,12 +8,13 @@ if (isset($_POST['submit'])) {
     }   
 
     if (!empty($_POST['middle-name'])) { 
-            if (preg_match("/^[a-zA-Z' ]+$/", $_POST['middle-name'])) {
-                $middle = $_POST['middle-name'] . chr(44);
+            if (!preg_match("/^[a-zA-Z' ]+$/", $_POST['middle-name'])) {
+            echo 'Invalid middle name!';
             }
         } else {
-            die('Invalid middle name given!');
-        }
+            $middle = $_POST['middle-name'] . chr(44);
+        } 
+
     if (preg_match("/^[a-zA-Z' ]+$/", $_POST['last-name'])) {
         $last = $_POST['last-name'] . chr(44);
     } else {
@@ -33,8 +34,12 @@ if (isset($_POST['submit'])) {
     } else {
         die('Invalid email given!');
     }   
-
-    $phone = $_POST['contact-phone'] . chr(44);
+    
+    if (is_numeric($_POST['contact-phone'])) {
+        $phone = $_POST['contact-phone'] . chr(44);
+    } else {
+        die('Invalid phone given!');
+    }
 
     $arrival = $_POST['arrival'] . PHP_EOL;
 
@@ -80,10 +85,10 @@ if (isset($_POST['submit'])) {
 		<label for="email">e-mail:</label>
 		<input type="email" id="email" name="email" required placeholder="Enter a valid email address"><br>
 		<label for="contact-phone">Contact phone:</label>
-		<input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9,+]{1,3} [0-9]{3} [0-9]{3}" placeholder="Pattern: 000 000 000"><br>
+		<input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9,+]{1,3} [0-9]{8,15}" placeholder="Pattern: prefix(no+)  number"><br>
 		<label for="arrival">Date of arrival:</label>
 		<input type="date" id="arrival" name="arrival" min="<?php echo date("Y-m-d"); ?>" required><br>
-		<input type="submit" value="Submit">
+		<input type="submit" name="submit" value="Submit">
 	</form>
 </body>
 </html>
