@@ -39,7 +39,11 @@ if (isset($_POST['submit'])) {
         die('Invalid phone given!');
     }
 
-    $arrival = $_POST['arrival'] . PHP_EOL;
+    if($_POST['arrival'] < date("Y-m-d")) {
+        $arrival = $_POST['arrival'] . PHP_EOL;
+    } else {
+        die('Invalid date in input!');
+    }
 
     $data = $first . $middle . $last . $salutation . $age . $email . $phone . $arrival; 
     echo '<br>Registration successful!<br>Registered information: ' . $data . '<br>';
@@ -70,7 +74,7 @@ if (isset($_POST['submit'])) {
 		<label for="last-name">Last name:</label>
 		<input type="text" id="last-name" name="last-name" pattern="[A-Za-z]{1,}" required placeholder="Enter your last name"><br>
 		<label for="salutation-select">Choose salutation:</label>
-		<select id="salutation-select" name="salutation-select" required>
+		<select id="salutation-select" name="salutation-select">
 			<option value="">--Salutation--</option>
 			<option value="mr">Mr</option>
 			<option value="ms">Ms</option>
@@ -86,7 +90,7 @@ if (isset($_POST['submit'])) {
 		<label for="contact-phone">Contact phone:</label>
 		<input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9]{9,18}" placeholder="prefix+number (no space)"><br>
 		<label for="arrival">Date of arrival:</label>
-		<input type="date" id="arrival" name="arrival" min="<?php echo date("Y-m-d"); ?>" required><br>
+		<input type="date" id="arrival" name="arrival" value="<?php echo date("Y-m-d"); ?>"  min="<?php echo date("Y-m-d"); ?>" required><br>
 		<input type="submit" name="submit" value="Submit">
 	</form>
 </body>
