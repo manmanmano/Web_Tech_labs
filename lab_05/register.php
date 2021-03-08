@@ -1,5 +1,9 @@
 <?php
-
+$file = 'csvfile/data.csv';
+$data = $_POST['first-name'] . chr(10);
+$handle = fopen($file, 'w');
+fwrite($handle, $data);
+fclose($handle);
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +18,11 @@
 	<h1>Register now!</h2>
 	<form action="#" method="POST" id="data">
 		<label for="first-name">First name:</label>
-		<input type="text" class="name" pattern="[A-Za-z]{1,}" required placeholder="Enter your first name"><br>
+		<input type="text" id="first-name" name="first-name" pattern="[A-Za-z]{1,}" required placeholder="Enter your first name"><br>
 		<label for="middle-name">Middle name:</label>
-		<input type="text" class="name" pattern="[A-Za-z]{1,}" required placeholder="Enter your middle name"><br>
+		<input type="text" id="middle-name" name="middle-name" pattern="[A-Za-z]{1,}" required placeholder="Enter your middle name"><br>
 		<label for="last-name">Last name:</label>
-		<input type="text" class="name" pattern="[A-Za-z]{1,}" required placeholder="Enter your last name"><br>
+		<input type="text" id="last-name" name="last-name" pattern="[A-Za-z]{1,}" required placeholder="Enter your last name"><br>
 		<label for="salutation-select">Choose salutation:</label>
 		<select id="salutation" required>
 			<option value="">--Salutation--</option>
