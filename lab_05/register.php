@@ -9,10 +9,12 @@ if (isset($_POST['submit'])) {
 	    die('Invalid first name given!');
     }
 
-    if (preg_match("/^[a-zA-Z' ]+$/", $_POST['middle-name'])) {
-	    $middle = $_POST['middle-name'] . chr(44);
-    } else {
-	    die('Invalid second name given!');
+    if (isset($_POST['middle-name']) { 
+            if (preg_match("/^[a-zA-Z' ]+$/", $_POST['middle-name'])) {
+	            $middle = $_POST['middle-name'] . chr(44);
+        } else {
+	        die('Invalid second name given!');
+        }
     }
 
     if (preg_match("/^[a-zA-Z' ]+$/", $_POST['last-name'])) {
