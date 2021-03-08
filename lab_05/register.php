@@ -12,13 +12,6 @@ if (isset($_POST['submit'])) {
     } else {
         die('Invalid middle name');
     }
-    /*if (!empty($_POST['middle-name'])) { 
-            if (!preg_match("/^[a-zA-Z' ]+$/", $_POST['middle-name'])) {
-                die('Invalid middle name!');
-            }
-        } else {
-            $middle = $_POST['middle-name'] . chr(44);
-       }*/ 
 
     if (preg_match("/^[a-zA-Z' ]+$/", $_POST['last-name'])) {
         $last = $_POST['last-name'] . chr(44);
