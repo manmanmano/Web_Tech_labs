@@ -1,6 +1,7 @@
 <?php
 
 if (isset($_POST['submit'])) {
+    
     if (preg_match("/^[a-zA-Z' ]+$/", $_POST['first-name'])) {
         $first = $_POST['first-name'] . chr(44);
     } else {
@@ -18,8 +19,13 @@ if (isset($_POST['submit'])) {
     } else {
         die('Invalid last name given!');
     }   
-
-    $salutation = $_POST['salutation-select'] . chr(44); 
+    
+    if (isset($_POST['salutation']) && ($_POST['salutation'] <> "mr" || $_POST['salutation'] <> "ms" || $_POST['salutation'] <> "mrs" ||
+    $_POST['salutation'] <> "prof" || $_POST['salutation'] <> "sir" || $_POST['salutation'] <> "dr" || $_POST['salutation'] <> "")) {
+        die('Invalid salutation!');
+    } else {
+        $salutation = $_POST['salutation-select'] . chr(44);
+    }
 
     if ($_POST['age'] > 17 && is_numeric($_POST['age'])) {
         $age = $_POST['age'] . chr(44);
@@ -39,7 +45,7 @@ if (isset($_POST['submit'])) {
         die('Invalid phone given!');
     }
 
-    if($_POST['arrival'] < date("Y-m-d")) {
+    if($_POST['arrival'] > date("Y-m-d")) {
         $arrival = $_POST['arrival'] . PHP_EOL;
     } else {
         die('Invalid date in input!');
