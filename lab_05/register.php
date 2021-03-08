@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     }
 
     if (preg_match("/^[a-zA-Z' ]+$/", $_POST['middle-name'])) {
-	$middle = $_POST['middle-name'] . chr(44);
+	    $middle = $_POST['middle-name'] . chr(44);
     } else {
 	    die('Invalid second name given!');
     }
