@@ -46,9 +46,15 @@ if (isset($_POST['submit'])) {
     }
 
     $data = $first . $middle . $last . $salutation . $age . $email . $phone . $arrival; 
+
+    if (substr_count($data, ",") > 7) {
+         die('Input corrupts the file!');
+    }
+    
     echo '<br>Registration successful!<br>Registered information: ' . $data . '<br>';
 
     file_put_contents('data.csv', $data, FILE_APPEND);
+
     echo '<a href="download.php">Click here</a> if you desire to download the list of entries.';
 }
 
