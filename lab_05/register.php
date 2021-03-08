@@ -7,13 +7,18 @@ if (isset($_POST['submit'])) {
         die('Invalid first name given!');
     }   
 
-    if (!empty($_POST['middle-name'])) { 
+    if (empty($_POST['middle-name']) || (preg_match("/^[a-zA-Z' ]+$/", $_POST['middle-name']))) {
+        $middle = $_POST['middle-name'] . chr(44);
+    } else {
+        die('Invalid middle name');
+    }
+    /*if (!empty($_POST['middle-name'])) { 
             if (!preg_match("/^[a-zA-Z' ]+$/", $_POST['middle-name'])) {
-            echo 'Invalid middle name!';
+                die('Invalid middle name!');
             }
         } else {
             $middle = $_POST['middle-name'] . chr(44);
-        } 
+       }*/ 
 
     if (preg_match("/^[a-zA-Z' ]+$/", $_POST['last-name'])) {
         $last = $_POST['last-name'] . chr(44);
@@ -35,7 +40,7 @@ if (isset($_POST['submit'])) {
         die('Invalid email given!');
     }   
     
-    if (is_numeric($_POST['contact-phone'])) {
+    if (is_numeric($_POST['contact-phone']) ||  empty($_POST['contact-phone'])) {
         $phone = $_POST['contact-phone'] . chr(44);
     } else {
         die('Invalid phone given!');
@@ -44,9 +49,10 @@ if (isset($_POST['submit'])) {
     $arrival = $_POST['arrival'] . PHP_EOL;
 
     $data = $first . $middle . $last . $salutation . $age . $email . $phone . $arrival; 
-    echo 'Registration successful!' . PHP_EOL . 'Registered information: ' . $data;
+    echo '<br>Registration successful!<br>Registered information: ' . $data . '<br>';
 
     file_put_contents('data.csv', $data, FILE_APPEND);
+    echo '<a href="download.php">Click here</a> if you desire to download the list of entries.';
 }
 
 ?>
@@ -85,7 +91,7 @@ if (isset($_POST['submit'])) {
 		<label for="email">e-mail:</label>
 		<input type="email" id="email" name="email" required placeholder="Enter a valid email address"><br>
 		<label for="contact-phone">Contact phone:</label>
-		<input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9,+]{1,3} [0-9]{8,15}" placeholder="Pattern: prefix(no+)  number"><br>
+		<input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9]{9,18}" placeholder="prefix+number (no space)"><br>
 		<label for="arrival">Date of arrival:</label>
 		<input type="date" id="arrival" name="arrival" min="<?php echo date("Y-m-d"); ?>" required><br>
 		<input type="submit" name="submit" value="Submit">
