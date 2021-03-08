@@ -1,9 +1,13 @@
-<?php
-$file = 'csvfile/data.csv';
-$data = $_POST['first-name'] . chr(10);
-$handle = fopen($file, 'w');
-fwrite($handle, $data);
-fclose($handle);
+<?php 
+$file = 'csvfile/data.csv'; 
+$names = $_POST['first-name'] . chr(44) . $_POST['middle-name'] . chr(44) . $_POST['last-name'] . chr(44);
+$salutation = $_POST['salutation-select'] . chr(44); 
+$age = $_POST['age'] . chr(44);
+$email = $_POST['email'] . chr(44);
+$phone = $_POST['contact-phone'] . chr(44);
+$arrival = $_POST['arrival'] . PHP_EOL;
+$data = $names . $salutation . $age . $email . $phone . $arrival; 
+file_put_contents($file, $data, FILE_APPEND);
 ?>
 
 <!DOCTYPE html>
@@ -20,11 +24,11 @@ fclose($handle);
 		<label for="first-name">First name:</label>
 		<input type="text" id="first-name" name="first-name" pattern="[A-Za-z]{1,}" required placeholder="Enter your first name"><br>
 		<label for="middle-name">Middle name:</label>
-		<input type="text" id="middle-name" name="middle-name" pattern="[A-Za-z]{1,}" required placeholder="Enter your middle name"><br>
+		<input type="text" id="middle-name" name="middle-name" pattern="[A-Za-z]{1,}" placeholder="Enter your middle name"><br>
 		<label for="last-name">Last name:</label>
 		<input type="text" id="last-name" name="last-name" pattern="[A-Za-z]{1,}" required placeholder="Enter your last name"><br>
 		<label for="salutation-select">Choose salutation:</label>
-		<select id="salutation" required>
+		<select id="salutation-select" name="salutation-select" required>
 			<option value="">--Salutation--</option>
 			<option value="mr">Mr</option>
 			<option value="ms">Ms</option>
