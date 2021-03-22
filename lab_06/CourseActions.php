@@ -1,14 +1,10 @@
-<?php 
-require_once ('CoursesClass.php');
+<?php
+require_once('index.php');
 
 class CourseActions {
-
-    function sortCourses() {
-        if ($_GET['search'] == 1) {
-            echo 'lol';
-        }
+    public static function filterCourses($identifier, $courses) {
+        echo 'lol';
     }
-
-} 
+}
 
 ?>

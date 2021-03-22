@@ -17,6 +17,10 @@ $t -> assign("title", "Course");
 $t -> assign("form", $form); // fill this if you use a form
 $t -> assignTable("table", $courses, $tableHead);
 
+if (isset($_GET['search'])) { 
+    CourseActions::filterCourses($_GET['search'], $courses);
+} 
+
 //Render content
 echo $t -> render();
 ?>
