@@ -14,7 +14,7 @@ $form = ""; // Only fill it if you use the form
 // Assign values
 $t -> assign("title", "Course");
 $t -> assign("form", $form); // fill this if you use a form
-$t -> assignTable("table", getCoursesTable(), $tableHead);
+$t -> assignTable("table", $courses, $tableHead);
 
 //Render content
 echo $t -> render();

@@ -1,32 +1,21 @@
 <?php
+require_once('lib/tpl.class.php');
+require_once('CoursesClass.php');
 
-class Course {
-    public $code;
-    public $name;
-    public $ects;
-    public $term;
-}
+const TEMPLATE_PATH = "templates";
 
-function createArray($handle) {
-    $objArr = array();
-    while (!feof($handle)) {
-        $course = new Course;
-        $chopped = fgetcsv($handle, 0, ";");
-        $course->code = $chopped[0];
-        $course->name = $chopped[1];
-        $course->ects = $chopped[2];
-        $course->term = $chopped[3];
-        array_push($objArr, $course);
-    }
-    return $objArr;
-}
+$t = new Template(TEMPLATE_PATH."/index_tpl.php");
 
-$file = 'data/courses.csv';
-if (!file_exists($file)) {
-    die("FILE NOT FOUND");
-}
-$handle = fopen($file, 'r');
-$courses = CreateArray($handle);
-print_r($courses);
-fclose($handle);
+$tableHead = ["code", "name", "points", "semester"];
+
+// Generate form
+$form = ""; // Only fill it if you use the form
+
+// Assign values
+$t -> assign("title", "Course");
+$t -> assign("form", $form); // fill this if you use a form
+$t -> assignTable("table", $courses, $tableHead);
+
+//Render content
+echo $t -> render();
 ?>
