@@ -1,24 +1,32 @@
 <?php
 
-declare(strict_types=1)
-
 class Course {
     public $code;
     public $name;
-    public $points;
-    public $semester;
+    public $ects;
+    public $term;
 }
 
-function getCoursesTable() {
-
+function createArray($handle) {
+    $objArr = array();
+    while (!feof($handle)) {
+        $course = new Course;
+        $chopped = fgetcsv($handle, 0, ";");
+        $course->code = $chopped[0];
+        $course->name = $chopped[1];
+        $course->ects = $chopped[2];
+        $course->term = $chopped[3];
+        array_push($objArr, $course);
+    }
+    return $objArr;
 }
-
 
 $file = 'data/courses.csv';
 if (!file_exists($file)) {
     die("FILE NOT FOUND");
 }
 $handle = fopen($file, 'r');
-
+$courses = CreateArray($handle);
+print_r($courses);
 fclose($handle);
 ?>
