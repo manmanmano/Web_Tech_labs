@@ -1,6 +1,7 @@
 <?php
 require_once('lib/tpl.class.php');
 require_once('CoursesClass.php');
+require_once('CourseActions.php');
 
 const TEMPLATE_PATH = "templates";
 

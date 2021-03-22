@@ -10,7 +10,7 @@ class Course {
 function createArray($handle) {
     $objArr = array();
     while (!feof($handle)) {
-        $course = new Course;
+        $course = new Course();
         $chopped = fgetcsv($handle, 0, ";");
         $course->code = $chopped[0];
         $course->name = $chopped[1];
