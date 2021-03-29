@@ -2,12 +2,12 @@
 $transCookie = "ctransient";
 $myCookie = "Mariano";
 setcookie($transCookie, $myCookie);
-if (!isset($_COOKIE[$transcookie])) {
+if (!isset($_COOKIE[$transCookie])) {
     echo "There is no cookie named ", $transCookie;
 } else {
     echo "Cookie '", $transCookie, "' = '", $myCookie, "'";
 }
 
 $persShortCookie = "ShortTimeCount";
-setcookie($persShortCookie, time() + 120 );
+setcookie($persShortCookie, 0, time()+120);
 ?>
