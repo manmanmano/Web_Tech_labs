@@ -15,9 +15,12 @@ function startSession($name, $age, $location) {
         echo "No data <br>";
     } 
     if (isset($_SESSION['sessionCounter'])) {
-        echo "<br>Session number ", $_SESSION['sessionCounter']++;
+        echo "<br>Session number", $_SESSION['sessionCounter']++;
     } else {
         $_SESSION['sessionCounter'] = 1;
     }
+    echo "<form action='#' method='GET'>
+        <input type='submit' value='Log out' name='logout'>
+        </form>";
 }
 ?>
