@@ -19,6 +19,7 @@ function startSession($name, $age, $location) {
     } else {
         $_SESSION['sessionCounter'] = 1;
     }
+    echo "<br><a href='reset.php'>Reset the session counter here</a><br>";
     echo "
         <form action='index.php' method='GET'>
         <input type='submit' value='Log out' name='logout'>
