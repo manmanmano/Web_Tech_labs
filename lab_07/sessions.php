@@ -5,7 +5,7 @@ function startSession($name, $age, $location) {
     $_SESSION['name'] = $name;
     $_SESSION['age'] = $age;
     $_SESSION['location'] = $location;
-    $_SESSION['sessionCounter'] = 1;
+#    $_SESSION['sessionCounter'] = 1;
     echo "<br>";
     if (isset($_SESSION['name']) && isset($_SESSION['age']) && isset($_SESSION['location'])) {
         echo "Name of the user: ", $_SESSION['name'], "<br>";
@@ -16,6 +16,8 @@ function startSession($name, $age, $location) {
     } 
     if (isset($_SESSION['sessionCounter'])) {
         echo "<br>Session number ", $_SESSION['sessionCounter']++;
+    } else {
+        $_SESSION['sessionCounter'] = 1;
     }
 }
 ?>

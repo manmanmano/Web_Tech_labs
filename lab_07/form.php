@@ -6,7 +6,7 @@
 </head>                                                                         
 <body>                                                                          
     <br><br>                                                                    
-    <form action="#" method="POST" id="data">                        
+    <form action="#" method="GET" id="data">                        
     <label for="pwd">PIN:</label>                                               
     <input type="password" name="password" minlength="4" maxlength="8"          
         required placeholder="Insert a PIN of 4-8 symbols">                     
