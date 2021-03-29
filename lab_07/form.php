@@ -17,15 +17,15 @@
 
 <?php
 include_once('sessions.php');
-if (isset($_POST['submit'])) {
+if (isset($_GET['submit'])) {
     
-    if (strlen($_POST['password']) < 4 && strlen($_POST['password']) > 8) {
+    if (strlen($_GET['password']) < 4 && strlen($_GET['password']) > 8) {
         die("INVALID INPUT!");
     }
     
-    if (!strcmp($_POST['password'], "m@m@M14")) {
+    if (!strcmp($_GET['password'], "m@m@M14")) {
         echo "Log in successful! <br>";
-        startSession("Mariano", 20, "Tallinn");
+        startSession("Mariano", "20", "Tallinn");
         
     } else {
         echo "Incorrect PIN, plese retry.";
