@@ -9,16 +9,13 @@ $t = new Template(TEMPLATE_PATH."/index_tpl.php");
 
 $tableHead = ["code", "name", "points", "semester"];
 
-// Generate form
-$form = ""; // Only fill it if you use the form
-
-// Assign values
 $t -> assign("title", "Course");
-$t -> assign("form", $form); // fill this if you use a form
-$t -> assignTable("table", $courses, $tableHead);
 
 if (isset($_GET['search'])) { 
     CourseActions::filterCourses($_GET['search'], $courses);
+    $t -> assignTable("table", $courses, $tableHead);
+} else {
+    $t -> assignTable("table", $courses, $tableHead);
 } 
 
 //Render content
