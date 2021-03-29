@@ -1,4 +1,12 @@
 <?php
+if (isset($_SESSION['sessionCounter'])) {
+    if (isset($_GET['reset'])) {
+        $_SESSION['sessionCounter'] = 1;
+        echo "Session number ", $_SESSION['sessionCounter']++;
+    } else {
+        echo "Session number ", $_SESSION['sessionCounter']++;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,5 +19,6 @@
     <form action='#' method="GET">
         <input type="submit" name="reset" value="reset">
     </form>
+    <a href="index.php">Back to index</a>
 </body>
 </html>
