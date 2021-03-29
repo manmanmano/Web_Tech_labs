@@ -1,5 +1,9 @@
 <?php
-
+if (isset($_POST['submit'])) {
+    if (strlen($_POST['password']) < 4 && strlen($_POST['password']) > 8) {
+        die("INVALID PIN!");
+    }
+}
 ?>
 
 <!DOCTYPE html>                                                                    
