@@ -9,22 +9,39 @@ if (!isset($_COOKIE[$cookieName])) {
 }
 
 if (isset($_COOKIE['ShortTimeCount'])) {
-    $accessCount = $_COOKIE['ShortTimeCount'] + 1;
-    echo "ShortTimeCount = ", $accessCount, "<br>";
+    $shortCount = $_COOKIE['ShortTimeCount'] + 1;
+    echo "ShortTimeCount = ", $shortCount, "<br>";
 } else {
-    $accessCount = 1;
-    echo "ShortTimeCount = ", $accessCount, "<br>";
+    $shortCount = 1;
+    echo "ShortTimeCount = ", $shortCount, "<br>";
 }
 
 if (isset($_COOKIE['LongTimeCount'])) {
-    $accessCount = $_COOKIE['LongTimeCount'] + 1;
-    echo "LongTimeCount = ", $accessCount, "<br>";
+    $longCount = $_COOKIE['LongTimeCount'] + 1;
+    echo "LongTimeCount = ", $longCount, "<br>";
 } else {
-    $accessCount = 1;
-    echo "LongTimeCount = ", $accessCount, "<br>";
+    $longCount = 1;
+    echo "LongTimeCount = ", $longCount, "<br>";
 }
 
 setcookie($cookieName, $cookieValue);
-setcookie('ShortTimeCount', $accessCount, time()+120);
-setcookie('LongTimeCount', $accessCount, time()+3600);
+setcookie('ShortTimeCount', $shortCount, time()+120);
+setcookie('LongTimeCount', $longCount, time()+3600);
 ?>
+
+<!DOCTYPE html>                                                                    
+<html lang="en">                                                                   
+<head>                                                                             
+    <meta charset="utf-8">                                                         
+    <title>Index</title>                                                           
+</head>                                                                            
+<body>                                                                             
+    <br>
+    <form action="#" method="POST" id="data">                                      
+    <label for="pwd">PIN:</label>                                                  
+    <input type="password" name="password" minlength="4" maxlength="8"             
+        required placeholder="Insert a PIN of 4-8 symbols">                        
+    <input type="submit" name="submit" required placeholder="Log in">              
+    </form>                                                                        
+</body>                                                                            
+</html> 
