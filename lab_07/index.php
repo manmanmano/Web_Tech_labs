@@ -1,4 +1,4 @@
-<?php 
+<?php #code for the first step
 $cookieName = "ctransient";
 $cookieValue = "Mariano";
 
