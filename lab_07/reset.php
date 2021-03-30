@@ -1,11 +1,13 @@
 <?php
 session_name("Mariano");
 session_start();
-if (isset($_GET['reset'])) {
-    $_SESSION['counter'] = 1;
-    echo "Session number ", $_SESSION['counter'];
-} else {
-    echo "Session number ", $_SESSION['counter']++;
+if (isset($_SESSION['counter'])) {
+    if (isset($_GET['reset'])) {
+        $_SESSION['counter'] = 1;
+        echo "Session number ", $_SESSION['counter'];
+    } else {
+        echo "Session number ", $_SESSION['counter']++;
+    }
 }
 ?>
 

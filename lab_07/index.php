@@ -38,7 +38,7 @@ if (isset($_GET['submit'])) {
     } else {
         echo "Incorrect PIN, please retry.";
     }
-    
+
     if (isset($_SESSION['name']) && isset($_SESSION['age']) &&
         isset($_SESSION['location'])) {
         echo "Name of the user: ", $_SESSION['name'], "<br>";
