@@ -3,7 +3,7 @@ session_name("Mariano");
 session_start();
 if (isset($_SESSION['counter'])) {
     echo "Your session is active.<br>";
-    if (isset($_GET['reset'])) {
+    if (isset($_POST['reset'])) {
         $_SESSION['counter'] = 1;
         echo "Session number ", $_SESSION['counter'];
     } else {
@@ -21,7 +21,7 @@ if (isset($_SESSION['counter'])) {
     <title>Reset button</title>
 </head>
 <body>
-    <form action='reset.php' method="GET">
+    <form action='#' method="POST">
         <input type="submit" name="reset" value="reset">
     </form>
     <a href="index.php">Back to index</a>
