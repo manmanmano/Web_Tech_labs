@@ -57,4 +57,3 @@ if (isset($_SESSION['name']) && isset($_SESSION['age']) &&
 }
 
 ?>
-
