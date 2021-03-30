@@ -2,7 +2,8 @@
 session_name("Mariano");
 session_start();
 if (isset($_GET['reset'])) {
-    echo "Session number ", $_SESSION['counter']++;
+    $_SESSION['counter'] = 1;
+    echo "Session number ", $_SESSION['counter'];
     echo "<br>Couter reset successful!";
 } else {
     echo "Session number ", $_SESSION['counter']++;
