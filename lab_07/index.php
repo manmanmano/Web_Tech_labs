@@ -21,39 +21,40 @@ include_once('cookies.php');
 
 <?php
 
-if (isset($_GET['submit'])) {
+if (strlen($_GET['password']) < 4 && strlen($_GET['password']) > 8) {
+    die('INVALID INPUT!');
+}
 
-    if (strlen($_GET['password']) < 4 && strlen($_GET['password']) > 8) {
-        die('INVALID INPUT!');
-    }
+if (!strcmp($_GET['password'], '123456')) {
+    session_name("Mariano"); 
+    session_start();
+    echo "Log in successful! <br>";
+    $_SESSION['name'] = 'Mariano';
+    $_SESSION['age'] = 20;
+    $_SESSION['location'] = 'Tallinn';
+    echo "<br>";
+} 
 
-    if (!strcmp($_GET['password'], '123456')) {
-        echo "Log in successful! <br>";
-        session_name("Mariano");
-        session_start();
-        $_SESSION['name'] = 'Mariano';
-        $_SESSION['age'] = 20;
-        $_SESSION['location'] = 'Tallinn';
-        echo "<br>";
-    } else {
-        echo "Incorrect PIN, please retry.";
-    }
+if (isset($_GET['submit']) && strcmp($_GET['password'], '123456') != 0) {
+    echo 'Incorrect password, please try again.';
+}
 
-    if (isset($_SESSION['name']) && isset($_SESSION['age']) &&
-        isset($_SESSION['location'])) {
-        echo "Name of the user: ", $_SESSION['name'], "<br>";
-        echo "Age of the user: ", $_SESSION['age'], "<br>";
-        echo "Location of the user: ", $_SESSION['location'], "<br>";
-        echo "<br>Session number ", ++$_SESSION['counter'];
-        echo "
-            <br><a href='reset.php'>Reset the session counter here</a><br><br>
-            <form action='index.php' method='GET' id='toone'>
-                <input type='submit' value='Log out' name='logout'>
-            </form> ";
-        if (isset($_GET['logout'])) {
-            session_unset();
-            session_destroy();
-        }
+session_name("Mariano");
+session_start();
+if (isset($_SESSION['name']) && isset($_SESSION['age']) &&
+    isset($_SESSION['location'])) {
+    echo "Name of the user: ", $_SESSION['name'], "<br>";
+    echo "Age of the user: ", $_SESSION['age'], "<br>";
+    echo "Location of the user: ", $_SESSION['location'], "<br>";
+    echo "<br>Session number ", ++$_SESSION['counter'];
+    echo "
+        <br><a href='reset.php'>Reset the session counter here</a><br><br>
+        <form action='index.php' method='GET' id='toone'>
+            <input type='submit' value='Log out' name='logout'>
+        </form> ";
+    if (isset($_GET['logout'])) {
+        session_unset();
+        session_destroy();
     }
 }
 
