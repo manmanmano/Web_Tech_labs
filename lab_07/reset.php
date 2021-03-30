@@ -1,10 +1,11 @@
 <?php
 session_name("Mariano");
 session_start();
-echo "Session number ", $_SESSION['sessionCounter']++;
 if (isset($_GET['reset'])) {
-    $_SESSION['sessionCounter'] = 1;
+    echo "Session number ", $_SESSION['counter']++;
     echo "<br>Couter reset successful!";
+} else {
+    echo "Session number ", $_SESSION['counter']++;
 }
 ?>
 
@@ -15,7 +16,7 @@ if (isset($_GET['reset'])) {
     <title>Reset button</title>
 </head>
 <body>
-    <form action='#' method="GET">
+    <form action='reset.php' method="GET">
         <input type="submit" name="reset" value="reset">
     </form>
     <a href="index.php">Back to index</a>
