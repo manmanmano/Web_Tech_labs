@@ -4,7 +4,6 @@ session_start();
 if (isset($_GET['reset'])) {
     $_SESSION['counter'] = 1;
     echo "Session number ", $_SESSION['counter'];
-    echo "<br>Couter reset successful!";
 } else {
     echo "Session number ", $_SESSION['counter']++;
 }
