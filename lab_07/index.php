@@ -1,23 +1,5 @@
 <?php
-include_once('cookies.php');                                                                           
-                                                                                
-if (strlen($_GET['password']) < 4 && strlen($_GET['password']) > 8) {          
-    die('INVALID INPUT!');                                                  
-}                                                                           
-                                                                                
-if (!strcmp($_GET['password'], '123456')) {                                 
-    session_name("Mariano");                                                
-    session_start();                                                        
-    echo "<br>";                                                            
-    if (!isset($_SESSION['name']) && !isset($_SESSION['age']) &&            
-        !isset($_SESSION['location']) && !isset($_SESSION['counter'])) {    
-        $_SESSION['name'] = 'Mariano';                                      
-        $_SESSION['age'] = 20;                                              
-        $_SESSION['location'] = 'Tallinn';                                  
-        $_SESSION['counter'] = 1;                                           
-    }                                                                       
-
-}                                                                           
+include_once('cookies.php');
 ?>
 
 <!DOCTYPE html>
@@ -38,29 +20,52 @@ if (!strcmp($_GET['password'], '123456')) {
 </html>
 
 <?php
+
 if (isset($_GET['submit'])) {
-    session_name("Mariano");
-    session_start();
-    if (isset($_SESSION['name']) && !isset($_SESSION['age']) &&
-        isset($_SESSION['location']) && isset($_SESSION['counter'])) {
-        $_SESSION['name'] = "Mariano";
+
+    if (strlen($_GET['password']) < 4 && strlen($_GET['password']) > 8) {
+        die('INVALID INPUT!');
+    }
+
+    if (!strcmp($_GET['password'], '123456')) {
+        echo "Log in successful! <br>";
+        session_name("Mariano");
+        session_start();
+        $_SESSION['name'] = 'Mariano';
         $_SESSION['age'] = 20;
-        $_SESSION['location'] = "Tallinn";
-        echo "Name of the user: ", $_SESSION['name'], "<br>";
-        echo "Age of the user: ", $_SESSION['age'], "<br>";
-        echo "Location of the user: ", $_SESSION['location'], "<br>";
-        echo "<br> Session number ", $_SESSION['counter']++;
-        echo "<br><a href='reset.php'>Reset the session counter here</a><br>";
-        echo "<br>
-            <form action='#' method='GET'>
+        $_SESSION['location'] = 'Tallinn';
+        echo "<br>";
+        
+        if (isset($_SESSION['name']) && isset($_SESSION['age']) && 
+            isset($_SESSION['location'])) {
+            echo "Name of the user: ", $_SESSION['name'], "<br>";
+            echo "Age of the user: ", $_SESSION['age'], "<br>";
+            echo "Location of the user: ", $_SESSION['location'], "<br>";
+        } else {
+            echo "No data <br>";
+        }
+
+        if (isset($_SESSION['counter'])) {
+            echo "<br>Session number ", $_SESSION['counter']++;
+        } else {
+            $_SESSION['counter'] = 1;
+        }
+
+        echo "
+            <br><a href='reset.php'>Reset the session counter here</a><br><br>
+            <form action='index.php' method='GET' id='toone'>
                 <input type='submit' value='Log out' name='logout'>
-            </form>";
+            </form> ";
         if (isset($_GET['logout'])) {
             session_unset();
             session_destroy();
-        } 
+        }
+
     } else {
-        $_SESSION['counter'] = 1;
+        echo "Incorrect PIN, please retry.";
     }
+
 }
+
 ?>
+
