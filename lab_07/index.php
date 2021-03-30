@@ -20,7 +20,6 @@ include_once('cookies.php');
 </html>
 
 <?php
-session_name("Mariano");                                                        
 session_start();   
 
 if (strlen($_POST['password']) < 4 && strlen($_POST['password']) > 8) {
@@ -53,7 +52,8 @@ if (isset($_SESSION['name']) && isset($_SESSION['age']) &&
     if (isset($_POST['logout'])) {
         session_unset();
         session_destroy();
-        }
+        header("refresh:0; url=index.php");
+    }
 }
 
 ?>

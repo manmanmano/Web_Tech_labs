@@ -1,5 +1,4 @@
 <?php
-session_name("Mariano");
 session_start();
 if (isset($_SESSION['counter'])) {
     echo "Your session is active.<br>";
