@@ -44,6 +44,7 @@ if (isset($_GET['submit'])) {
         echo "Name of the user: ", $_SESSION['name'], "<br>";
         echo "Age of the user: ", $_SESSION['age'], "<br>";
         echo "Location of the user: ", $_SESSION['location'], "<br>";
+        echo "<br>Session number ", ++$_SESSION['counter'];
         echo "
             <br><a href='reset.php'>Reset the session counter here</a><br><br>
             <form action='index.php' method='GET' id='toone'>
@@ -53,12 +54,6 @@ if (isset($_GET['submit'])) {
             session_unset();
             session_destroy();
         }
-    }
- 
-    if (isset($_SESSION['counter'])) {
-        echo "<br>Session number ", $_SESSION['counter']++;
-    } else {
-        $_SESSION['counter'] = 1;
     }
 }
 
