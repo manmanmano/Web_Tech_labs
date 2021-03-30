@@ -35,22 +35,15 @@ if (isset($_GET['submit'])) {
         $_SESSION['age'] = 20;
         $_SESSION['location'] = 'Tallinn';
         echo "<br>";
-        
-        if (isset($_SESSION['name']) && isset($_SESSION['age']) && 
-            isset($_SESSION['location'])) {
-            echo "Name of the user: ", $_SESSION['name'], "<br>";
-            echo "Age of the user: ", $_SESSION['age'], "<br>";
-            echo "Location of the user: ", $_SESSION['location'], "<br>";
-        } else {
-            echo "No data <br>";
-        }
-
-        if (isset($_SESSION['counter'])) {
-            echo "<br>Session number ", $_SESSION['counter']++;
-        } else {
-            $_SESSION['counter'] = 1;
-        }
-
+    } else {
+        echo "Incorrect PIN, please retry.";
+    }
+    
+    if (isset($_SESSION['name']) && isset($_SESSION['age']) &&
+        isset($_SESSION['location'])) {
+        echo "Name of the user: ", $_SESSION['name'], "<br>";
+        echo "Age of the user: ", $_SESSION['age'], "<br>";
+        echo "Location of the user: ", $_SESSION['location'], "<br>";
         echo "
             <br><a href='reset.php'>Reset the session counter here</a><br><br>
             <form action='index.php' method='GET' id='toone'>
@@ -60,11 +53,13 @@ if (isset($_GET['submit'])) {
             session_unset();
             session_destroy();
         }
-
-    } else {
-        echo "Incorrect PIN, please retry.";
     }
-
+ 
+    if (isset($_SESSION['counter'])) {
+        echo "<br>Session number ", $_SESSION['counter']++;
+    } else {
+        $_SESSION['counter'] = 1;
+    }
 }
 
 ?>
