@@ -1,6 +1,6 @@
 <?php
-session_name("Mariano");
 session_start();
+session_set_cookie_params(['path' => '/~madang/']);
 if (isset($_SESSION['counter'])) {
     echo "Your session is active.<br>";
     if (isset($_POST['reset'])) {
