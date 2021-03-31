@@ -2,8 +2,9 @@
 session_set_cookie_params(['path' => '/~madang/']);
 session_start();
 $sessionNumber = 0;
+$active = "";
 if (isset($_SESSION['counter'])) {
-    echo "Your session is active.<br>";
+    $active = "Your session is active.<br>";
     
     if (isset($_POST['reset'])) {
         $sessionNumber = 1; 
@@ -13,7 +14,7 @@ if (isset($_SESSION['counter'])) {
     }
 
 } else {
-    echo "Your session is not active anymore.";
+    $active = "Your session is not active anymore.";
 }
 ?>
 
@@ -24,7 +25,7 @@ if (isset($_SESSION['counter'])) {
     <title>Reset button</title>
 </head>
 <body>
-    <?php echo "Session number ", $sessionNumber ?>
+    <?php echo $active, "<br>Session number ", $sessionNumber ?>
     <form action='#' method="POST">
         <input type="submit" name="reset" value="reset">
     </form>
