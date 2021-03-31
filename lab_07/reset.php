@@ -25,7 +25,7 @@ if (isset($_SESSION['counter'])) {
     <title>Reset button</title>
 </head>
 <body>
-    <?php echo $active, "<br>Session number ", $sessionNumber ?>
+    <?php echo $active, "Session number ", $sessionNumber ?>
     <form action='#' method="POST">
         <input type="submit" name="reset" value="reset">
     </form>
