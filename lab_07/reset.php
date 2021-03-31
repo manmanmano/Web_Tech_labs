@@ -4,7 +4,7 @@ session_start();
 $sessionNumber = 0;
 $active = "";
 if (isset($_SESSION['counter'])) {
-    $active = "Your session is active.<br>";
+    $active = "Your session is active.";
     
     if (isset($_POST['reset'])) {
         $sessionNumber = 1; 
@@ -26,8 +26,8 @@ if (isset($_SESSION['counter'])) {
 </head>
 <body>
     <?php echo $active?>
-    <label for="sessionNumber">Session number</label>
-    <?php echo $sessionNumber?>
+    <br>Session number
+    <?php echo $sessionNumber?><br>
     <form action='#' method="POST">
         <input type="submit" name="reset" value="reset">
     </form>
