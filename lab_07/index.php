@@ -20,13 +20,13 @@ include_once('cookies.php');
 </html>
 
 <?php
+session_set_cookie_params(['path' => '/~madang/']);
 session_start();   
 
 if (strlen($_POST['password']) < 4 && strlen($_POST['password']) > 8) {
     die('INVALID INPUT!');
 }
 
-session_set_cookie_params(['path' => '/~madang/']);
 if (!strcmp($_POST['password'], '123456')) {
     echo "Log in successful! <br>";
     $_SESSION['name'] = 'Mariano';
