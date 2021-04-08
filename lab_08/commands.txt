@@ -20,3 +20,7 @@ CREATE TABLE IF NOT EXISTS test_201752 (
  ID INT NOT NULL AUTO_INCREMENT,
  grade TINYINT,
  PRIMARY KEY (ID));
+
+INSERT INTO semesters_201752
+ (semester_name)
+ VALUES ('autumn'), ('spring'), ('autumn - spring');
