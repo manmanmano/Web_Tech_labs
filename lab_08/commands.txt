@@ -24,3 +24,13 @@ CREATE TABLE IF NOT EXISTS test_201752 (
 INSERT INTO semesters_201752
  (semester_name)
  VALUES ('autumn'), ('spring'), ('autumn - spring');
+
+INSERT INTO declarations_201752
+ (courses_ID, semesters_ID, student_code, student_name, remarks)
+ VALUES
+ ('352', '1', '123456', 'Lebron James', 'A great baller'),
+ ('433', '2', '654321', 'Donny Hathaway', 'Angels voice'),
+ ('212', '3', '123456', 'Lebron James', 'Already builds'),
+ ('162', '3', '162534', 'Kevin Mitnick', 'Very secure'),
+ ('14', '1', '615243', 'Kersti Kaljulaid', 'Entrepreneur');
+
