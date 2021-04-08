@@ -49,5 +49,23 @@ SELECT course_code, course_name, ects_credits FROM courses WHERE ects_credits>='
 SELECT student_name, student_code, course_code, ects_credits
  FROM declarations_201752 AS D, courses AS C
  WHERE D.courses_ID=C.ID
- ORDER BY ects_credits DESC, student_name AS
- ORDER BY ects_credits DESC, student_name ASC;
+ ORDER BY ects_credits DESC; 
+
+SELECT student_name, student_code, course_code, ects_credits
+ FROM declarations_201752 AS D, courses AS C
+ WHERE D.courses_ID=C.ID
+ ORDER BY student_name ASC; 
+
+SELECT student_name, student_code, SUM(ects_credits)
+ FROM declarations_201752 AS D, courses AS C
+ WHERE D.courses_ID=C.ID
+ GROUP BY student_name, student_code
+ ORDER BY student_name;
+
+ SELECT student_name, student_code, SUM(ects_credits)
+  FROM declarations_201752 AS D, courses AS C
+  WHERE D.courses_ID=C.ID
+  GROUP BY student_name, student_code
+  ORDER BY SUM(ects_credits) DESC;
+
+
