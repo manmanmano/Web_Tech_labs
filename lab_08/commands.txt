@@ -34,3 +34,5 @@ INSERT INTO declarations_201752
  ('162', '3', '162534', 'Kevin Mitnick', 'Very secure'),
  ('14', '1', '615243', 'Kersti Kaljulaid', 'Entrepreneur');
 
+ UPDATE courses
+ SET old_credits = 1.5 * ects_credits;
