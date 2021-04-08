@@ -20,7 +20,7 @@ include_once('cookies.php');
 </html>
 
 <?php
-session_set_cookie_params(['path' => '/~madang/']);
+session_set_cookie_params(['path' => '/~madang/Web_Technologies/lab_07/']);
 session_start();   
 
 if (strlen($_POST['password']) < 4 && strlen($_POST['password']) > 8) {

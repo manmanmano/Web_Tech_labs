@@ -24,7 +24,7 @@ if (isset($_COOKIE['LongTimeCount'])) {
     echo "LongTimeCount = ", $longCount, "<br>";
 }
 
-setcookie($cookieName, $cookieValue, ['path' => '/~madang/']);
-setcookie('ShortTimeCount', $shortCount, time()+120, '~/madang/');
-setcookie('LongTimeCount', $longCount, time()+3600, '~/madang/');
+setcookie($cookieName, $cookieValue, ['path' => '~madang/Web_Technologies/lab_07/']);
+setcookie('ShortTimeCount', $shortCount, time()+120, '~/madang/Web_Technologies/lab_07/');
+setcookie('LongTimeCount', $longCount, time()+3600, '~/madang/Web_Technologies/lab_07/');
 ?>

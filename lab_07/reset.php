@@ -1,5 +1,5 @@
 <?php
-session_set_cookie_params(['path' => '/~madang/']);
+session_set_cookie_params(['path' => '/~madang/Web_Technologies/lab_07/']);
 session_start();
 $sessionNumber = 0;
 $active = "";
