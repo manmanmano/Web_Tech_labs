@@ -70,4 +70,6 @@ SELECT student_name, student_code, SUM(ects_credits)
 
 SELECT COUNT(semesters_ID) FROM declarations_201752 WHERE semesters_ID='1';
 
+DROP TABLE test_201752;
 
+exit;
