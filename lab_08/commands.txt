@@ -43,3 +43,5 @@ INSERT INTO declarations_201752
 SELECT * FROM courses WHERE course_name LIKE '%programming%' AND Semesters_ID='2';
 
 SELECT ects_credits FROM courses WHERE course_code='ICD0007';
+
+SELECT course_code, course_name, ects_credits FROM courses WHERE ects_credits>='5';
