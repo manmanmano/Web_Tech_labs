@@ -1,4 +1,7 @@
 SHOW databases;
+
+USE WT_11;
+
 SHOW tables;
 
 CREATE TABLE IF NOT EXISTS semesters_201752 (
@@ -36,3 +39,5 @@ INSERT INTO declarations_201752
 
  UPDATE courses
  SET old_credits = 1.5 * ects_credits;
+
+SELECT * FROM courses WHERE course_name LIKE '%programming%' AND Semesters_ID='2';
