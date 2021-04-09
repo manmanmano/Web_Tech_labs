@@ -51,7 +51,12 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
     <body>
         <ul>                                                            
             <?php listSemesters($link)?>
-        </ul>                                                           
+        </ul>
+        <form action="#" method="GET" name="myForm">
+            <label for="search">Search by code or name:</label>
+            <input type="text" name="search">
+            <input type="submit" value="Search" name="submit">
+        </form>
         <table>
             <tr>
                 <th>Course Code</th>
