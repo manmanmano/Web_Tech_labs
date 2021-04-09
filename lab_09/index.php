@@ -2,7 +2,9 @@
 
 include_once "dbconnection_data.php";
 
-function listCourses($result, $query) {
+function listCourses($link) {
+    $query = "SELECT course_code, course_name, ects_credits FROM courses;";
+    $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
             echo "
@@ -19,11 +21,7 @@ function listCourses($result, $query) {
 
 function listSemesters($result, $query) {
     if (mysqli_num_rows($result) > 0) {
-        echo "<pre>";
-        while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
-            printf("<a href='#'>%s</a>\t", $row[0]);
-        }
-        echo "</pre>";
+        echo mysqli_num_rows($result);
     } else {
         echo "No semesters found!";
     }
@@ -31,12 +29,6 @@ function listSemesters($result, $query) {
 
 $link = mysqli_connect($server, $user, $password, $database);
 if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
-
-$coursesQuery = "SELECT course_code, course_name, ects_credits FROM courses;";
-$coursesResult = mysqli_query($link, $coursesQuery);
-
-$semestersQuery = "SELECT semester_name FROM semesters_201752;";
-$semestersResult = mysqli_query($link, $semestersQuery);
 
 ?>
 
@@ -48,24 +40,18 @@ $semestersResult = mysqli_query($link, $semestersQuery);
         <link rel="stylesheet" type="text/css" href="styles/style.css">
     </head>
     <body>
-        <header>                                                                
-            <nav>                                                               
-                <ul>                                                            
-                    <li class="menu">
-                    <?php 
-                    listSemesters($semestersResult, $semestersQuery);
-                    ?>
-                    </li>           
-                </ul>                                                           
-            </nav>                                                              
-        </header>  
+        <ul>                                                            
+            <li class="menu">
+            <?php listSemesters($semestersResult, $semestersQuery)?>
+            </li>
+        </ul>                                                           
         <table>
             <tr>
                 <th>Course Code</th>
                 <th>Course Name</th>
                 <th>Credits</th>
             </tr>
-            <?php listCourses($coursesResult, $coursesQuery)?>
+            <?php listCourses($link)?>
         </table>
     </body>
 </html>

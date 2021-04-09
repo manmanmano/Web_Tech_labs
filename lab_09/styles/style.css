@@ -2,47 +2,14 @@ table {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    border-collapse: collapse;
 }
 
-tr {                                                                        
-    height: 40px;                                                           
-}                                                                           
+table, th, td {
+    border: 1px solid black;
+}
 
-tr:nth-child(odd) {                                                         
-    background-color: white;                                                
-}                                                                           
-                                                                                
-tr:nth-child(even) {                                                        
-    background-color: lightgray;                                            
-}                                                                           
-                                                                                
-th {                                                                        
-    background-color: skyblue;                                            
-    color: rgb(32, 32, 32);                                                 
-}                                                                           
-                                                                                
 td {                                                                        
     padding-left: 10px;                                                     
     padding-right: 10px;                                                    
-}
-
-a {
-    font-size: 17px;
-}
-
-.menu a{
-    text-decoration: none;
-}
-
-nav > ul {
-    list-style: none;
-}
-
-nav {
-    margin-top: 0%;
-    margin-bottom: 0%;
-    margin-right: auto;
-    margin-left: 27%;
-    position: relative;
-    width: 600px;
 }
