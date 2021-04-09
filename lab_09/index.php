@@ -30,6 +30,8 @@ function listCourses($link) {
             <td>", $semester_name, "</td>
         </tr>";
     }
+
+    mysqli_stmt_close($query);
 }
 
 function listSemesters($link) {
@@ -59,7 +61,7 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
     </head>
     <body>
         <ul>                                                            
-            <?php listSemesters($link)?>
+            <?php listSemesters($link); ?>
         </ul>
         <form action="#" method="POST" name="myForm">
             <label for="search">Search by code or name:</label>
@@ -73,8 +75,9 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
                 <th>Credits</th>
                 <th>Semester</th>
             </tr>
-            <?php listCourses($link)?>
+            <?php listCourses($link); ?>
         </table>
     </body>
 </html>
 
+<?php mysqli_close($link); ?>
