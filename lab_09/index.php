@@ -21,7 +21,7 @@ function listSemesters($result, $query) {
     if (mysqli_num_rows($result) > 0) {
         echo "<pre>";
         while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
-            printf("<a href=''>%s</a>\t", $row[0]);
+            printf("<a href='#'>%s</a>\t", $row[0]);
         }
         echo "</pre>";
     } else {
@@ -59,7 +59,6 @@ $semestersResult = mysqli_query($link, $semestersQuery);
                 </ul>                                                           
             </nav>                                                              
         </header>  
-        <?php listSemesters($semestersResult, $semestersQuery)?>
         <table>
             <tr>
                 <th>Course Code</th>
