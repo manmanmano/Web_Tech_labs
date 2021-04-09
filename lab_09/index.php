@@ -4,12 +4,6 @@ include_once "dbconnection_data.php";
 
 function listCourses($result, $query) {
     if (mysqli_num_rows($result) > 0) {
-        echo "<table>
-            <tr>
-                <th>Course Code</th>
-                <th>Course Name</th>
-                <th>Credits</th>
-            </tr>";
         while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
             echo "
                 <tr>
@@ -18,7 +12,6 @@ function listCourses($result, $query) {
                     <td>", $row[2], "</td>
                 </tr>";
         }
-        echo "</table>";
     } else {
         echo "No courses found!";
     }
@@ -26,12 +19,10 @@ function listCourses($result, $query) {
 
 $link = mysqli_connect($server, $user, $password, $database);
 if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
-else echo "Connection established!<br><br>";
 
 $coursesQuery = "SELECT course_code, course_name, ects_credits FROM courses;";
 $result = mysqli_query($link, $coursesQuery);
 
-listCourses($result, $coursesQuery);
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +33,14 @@ listCourses($result, $coursesQuery);
         <link rel="stylesheet" type="text/css" href="styles/style.css">
     </head>
     <body>
+        <table>
+            <tr>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Credits</th>
+            </tr>
+            <?php  listCourses($result, $coursesQuery)?>
+        </table>
     </body>
 </html>
 
