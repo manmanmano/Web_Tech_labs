@@ -4,12 +4,21 @@ include_once "dbconnection_data.php";
 
 function listCourses($result, $query) {
     if (mysqli_num_rows($result) > 0) {
-        echo "<pre>";
+        echo "<table>
+            <tr>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Credits</th>
+            </tr>";
         while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
-            printf("%s\t %s\t %s<br>", $row[0], $row[1],
-                $row[2]);
+            echo "
+                <tr>
+                    <td>", $row[0], "</td>
+                    <td>", $row[1], "</td>
+                    <td>", $row[2], "</td>
+                </tr>";
         }
-        echo "</pre>";
+        echo "</table>";
     } else {
         echo "No courses found!";
     }
@@ -24,3 +33,14 @@ $result = mysqli_query($link, $coursesQuery);
 
 listCourses($result, $coursesQuery);
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Index</title>
+    </head>
+    <body>
+    </body>
+</html>
+
