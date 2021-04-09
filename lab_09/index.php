@@ -39,6 +39,7 @@ listCourses($result, $coursesQuery);
     <head>
         <meta charset="UTF-8">
         <title>Index</title>
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
     </head>
     <body>
     </body>
