@@ -19,11 +19,16 @@ function listCourses($link) {
     }
 }
 
-function listSemesters($result, $query) {
+function listSemesters($link) {
+    $query = "SELECT * FROM semesters_201752;";
+    $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) > 0) {
-        echo mysqli_num_rows($result);
-    } else {
-        echo "No semesters found!";
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            echo "
+            <li>
+            <a href='index.php?search=", $row['ID'], "'>", $row['semester_name'], "</a>
+            </li>";
+        }
     }
 }
 
@@ -41,9 +46,7 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
     </head>
     <body>
         <ul>                                                            
-            <li class="menu">
-            <?php listSemesters($semestersResult, $semestersQuery)?>
-            </li>
+            <?php listSemesters($link)?>
         </ul>                                                           
         <table>
             <tr>
