@@ -3,10 +3,19 @@
 include_once "dbconnection_data.php";
 
 function listCourses($link) {  
-    $query = mysqli_prepare($link,  
-        "SELECT course_code, course_name, ects_credits, semester_name
-        FROM courses AS C, semesters_201752 AS S
-        WHERE C.Semesters_ID=S.ID AND Semesters_ID=?;");
+    if (!isset($_GET['semester'])) {
+        $query = mysqli_prepare($link,
+            "SELECT course_code, course_name, ects_credits, semester_name
+            FROM courses AS C, semesters_201752 AS S
+            WHERE C.Semesters_ID=S.ID 
+            ORDER BY course_code ASC;");
+            
+    } else {
+        $query = mysqli_prepare($link,  
+            "SELECT course_code, course_name, ects_credits, semester_name
+            FROM courses AS C, semesters_201752 AS S
+            WHERE C.Semesters_ID=S.ID AND Semesters_ID=?;");
+    }
 
     mysqli_stmt_bind_param($query, "i", $_GET['semester']);
     mysqli_stmt_execute($query);
@@ -52,7 +61,7 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
         <ul>                                                            
             <?php listSemesters($link)?>
         </ul>
-        <form action="#" method="GET" name="myForm">
+        <form action="#" method="POST" name="myForm">
             <label for="search">Search by code or name:</label>
             <input type="text" name="search">
             <input type="submit" value="Search" name="submit">
