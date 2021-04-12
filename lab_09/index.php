@@ -17,7 +17,6 @@ function listCourses($link) {
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID 
             ORDER BY course_code ASC;");
-            
     } else {
         $query = mysqli_prepare($link,  
             "SELECT course_code, course_name, ects_credits, semester_name
@@ -29,11 +28,10 @@ function listCourses($link) {
     if (isset($_GET['sortBy']) && isset($_GET['field'])) {
 
         $sort = "ASC";
-        if ($_GET['sortBy'] == 'ASC') {
+        if ($_GET['sortBy'] == 'ASC') 
             $sort = "DESC";
-        } else {
+        else 
             $sort = "ASC";
-        }
 
         switch($_GET['field']) {
             case "course_code":
@@ -49,9 +47,7 @@ function listCourses($link) {
                 $field = "semester_name";
                 break;
             default: $field = ""; 
-        }
-
-        
+        } 
 
         $safeSort = sanitizeInputVar($link, $sort);
         $safeField = sanitizeInputVar($link, $field);
@@ -62,13 +58,13 @@ function listCourses($link) {
             ORDER BY " .  $safeField . " " .  $safeSort . ";");
     }
 
-    if (isset($_POST['submit'])) {
-        #setcookie("search", $search, ['path' => '~madang/Web_Technologies/lab_09/']);
+    if (!empty($_POST['search'])) {
+        setcookie("search", $search, ['path' => '~madang/Web_Technologies/lab_09/']);
         $query = mysqli_prepare($link,
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID
-            AND course_name LIKE ?  OR course_code LIKE ? ;");
+            AND course_name LIKE ?  OR course_code LIKE ?;");
         $search = "%" . $_POST['search'] . "%";
         mysqli_stmt_bind_param($query, "ss", $search, $search);
     }
