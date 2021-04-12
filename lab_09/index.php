@@ -26,16 +26,6 @@ function listCourses($link) {
             mysqli_stmt_bind_param($query, "i", $_GET['semester']);
     }
 
-    if (isset($_POST['submit'])) {
-        $query = mysqli_prepare($link,
-            "SELECT course_code, course_name, ects_credits, semester_name
-            FROM courses AS C, semesters_201752 AS S
-            WHERE C.Semesters_ID=S.ID 
-            AND course_name LIKE ?  OR course_code LIKE ?;");
-        $search = "%" . $_POST['search'] . "%";
-        mysqli_stmt_bind_param($query, "ss", $search, $search);
-    }
-
     if (isset($_GET['sortBy']) && isset($_GET['field'])) {
 
         $sort = "ASC";
@@ -44,16 +34,24 @@ function listCourses($link) {
         } else {
             $sort = "ASC";
         }
-    
-        if ($_GET['field'] == 'course_code') {
-            $field = 'course_code';
-        } elseif ($_GET['field'] == 'course_name') {
-            $field = 'course_name';
-        } elseif ($_GET['field'] == 'ects_credits') {
-            $field = 'ects_credits';
-        } elseif ($_GET['field'] == 'semester_name') {
-            $field = 'semester_name';
+
+        switch($_GET['field']) {
+            case "course_code":
+                $field = "course_code";
+                break; 
+            case "course_name":
+                $field = "course_name";
+                break;
+            case "ects_credits":
+                $field = "ects_credits";
+                break;
+            case "semester_name":
+                $field = "semester_name";
+                break;
+            default: $field = ""; 
         }
+
+        
 
         $safeSort = sanitizeInputVar($link, $sort);
         $safeField = sanitizeInputVar($link, $field);
@@ -62,6 +60,17 @@ function listCourses($link) {
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID
             ORDER BY " .  $safeField . " " .  $safeSort . ";");
+    }
+
+    if (isset($_POST['submit'])) {
+        #setcookie("search", $search, ['path' => '~madang/Web_Technologies/lab_09/']);
+        $query = mysqli_prepare($link,
+            "SELECT course_code, course_name, ects_credits, semester_name
+            FROM courses AS C, semesters_201752 AS S
+            WHERE C.Semesters_ID=S.ID
+            AND course_name LIKE ?  OR course_code LIKE ? ;");
+        $search = "%" . $_POST['search'] . "%";
+        mysqli_stmt_bind_param($query, "ss", $search, $search);
     }
 
     mysqli_stmt_execute($query);
