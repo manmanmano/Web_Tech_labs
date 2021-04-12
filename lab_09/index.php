@@ -34,9 +34,26 @@ function listCourses($link) {
             WHERE C.Semesters_ID=S.ID 
             AND course_name LIKE '%" . $search . "%' OR course_code LIKE '%" . $search . "%';");
     }
+
+    $sort = "ASC";
+    if (isset($_GET['sortBy'])) {
+        if ($_GET['sortBy'] == 'ASC') {
+            $sort = "DESC";
+        } else {
+            $sort = "ASC";
+        }
+    }
+   
     mysqli_stmt_execute($query);
     mysqli_stmt_bind_result($query, $course_code, $course_name, $ects_credits, $semester_name);
-
+    
+    echo "
+     <tr>
+        <th><a href='index.php?sortBy=" . $sort . "'>Course Code</a></th>
+        <th><a href='index.php?sortBy=" . $sort . "'>Course Name</a></th>
+        <th><a href='index.php?sortBy=" . $sort . "'>Credits</a></th>
+        <th><a href='index.php?sortBy=" . $sort . "'>Semester</a></th>
+     </tr>";
     while (mysqli_stmt_fetch($query)){
         echo "
          <tr>
@@ -86,12 +103,6 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
             <input type="submit" value="Search" name="submit">
         </form>
         <table>
-            <tr>
-                <th>Course Code</th>
-                <th>Course Name</th>
-                <th>Credits</th>
-                <th>Semester</th>
-            </tr>
             <?php listCourses($link); ?>
         </table>
     </body>
