@@ -25,7 +25,6 @@ function listCourses($link) {
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID 
             AND course_name LIKE '%" . $search . "%' OR course_code LIKE '%" . $search . "%';");
-            mysqli_stmt_bind_param($query, "s", $_POST['search']);
     }
     mysqli_stmt_execute($query);
     mysqli_stmt_bind_result($query, $course_code, $course_name, $ects_credits, $semester_name);
