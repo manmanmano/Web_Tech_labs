@@ -22,3 +22,11 @@ li {
 form {
     padding: 20px;
 }
+
+em {
+    font-size: 15px;
+}
+
+p {
+    padding-left: 20px;
+}

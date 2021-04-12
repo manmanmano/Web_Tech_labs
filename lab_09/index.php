@@ -35,9 +35,9 @@ function listCourses($link) {
             AND course_name LIKE '%" . $search . "%' OR course_code LIKE '%" . $search . "%';");
     }
 
-    $sort = "ASC";
-    if (isset($_GET['sortBy'])) {
-        
+    if (isset($_GET['sortBy']) && isset($_GET['field'])) {
+
+        $sort = "ASC";
         if ($_GET['sortBy'] == 'ASC') {
             $sort = "DESC";
         } else {
@@ -60,7 +60,7 @@ function listCourses($link) {
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID
-            ORDER BY " .  $field . " " .  $sort . ";");
+            ORDER BY " .  $safeField . " " .  $safeSort . ";");
     }
 
     mysqli_stmt_execute($query);
@@ -116,11 +116,13 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
         <ul>                                                            
             <?php listSemesters($link); ?>
         </ul>
-        <form action="#" method="POST" name="myForm">
+        <form action="index.php" method="POST" name="myForm">
             <label for="search">Search by code or name:</label>
             <input type="text" name="search">
             <input type="submit" value="Search" name="submit">
         </form>
+        <p><em>Click on the header of a specific column to get its information sorted 
+                in either ascending or descending order.</em></p>
         <table>
             <?php listCourses($link); ?>
         </table>
