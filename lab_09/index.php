@@ -27,12 +27,13 @@ function listCourses($link) {
     }
 
     if (isset($_POST['submit'])) {
-        $search = sanitizeInputVar($link, $_POST['search']); 
         $query = mysqli_prepare($link,
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID 
-            AND course_name LIKE '%" . $search . "%' OR course_code LIKE '%" . $search . "%';");
+            AND course_name LIKE ?  OR course_code LIKE ?;");
+        $search = "%" . $_POST['search'] . "%";
+        mysqli_stmt_bind_param($query, "ss", $search, $search);
     }
 
     if (isset($_GET['sortBy']) && isset($_GET['field'])) {
