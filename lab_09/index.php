@@ -11,6 +11,17 @@ function sanitizeInputVar($link, $var) {
 }
 
 function listCourses($link) {  
+    if (!empty($_POST['search'])) {
+        setcookie("search", $search, ['path' => '~madang/Web_Technologies/lab_09/']);
+        $query = mysqli_prepare($link,
+            "SELECT course_code, course_name, ects_credits, semester_name
+            FROM courses AS C, semesters_201752 AS S
+            WHERE C.Semesters_ID=S.ID
+            AND course_name LIKE ?  OR course_code LIKE ?;");
+        $search = "%" . $_POST['search'] . "%";
+        mysqli_stmt_bind_param($query, "ss", $search, $search);
+    }
+
     if (!isset($_GET['semester'])) {
         $query = mysqli_prepare($link,
             "SELECT course_code, course_name, ects_credits, semester_name
@@ -58,16 +69,6 @@ function listCourses($link) {
             ORDER BY " .  $safeField . " " .  $safeSort . ";");
     }
 
-    if (!empty($_POST['search'])) {
-        setcookie("search", $search, ['path' => '~madang/Web_Technologies/lab_09/']);
-        $query = mysqli_prepare($link,
-            "SELECT course_code, course_name, ects_credits, semester_name
-            FROM courses AS C, semesters_201752 AS S
-            WHERE C.Semesters_ID=S.ID
-            AND course_name LIKE ?  OR course_code LIKE ?;");
-        $search = "%" . $_POST['search'] . "%";
-        mysqli_stmt_bind_param($query, "ss", $search, $search);
-    }
 
     mysqli_stmt_execute($query);
     mysqli_stmt_bind_result($query, $course_code, $course_name, $ects_credits, $semester_name);
@@ -130,7 +131,7 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
         <p><em>Click on the header of a specific column to get its information sorted 
                 in either ascending or descending order.</em></p>
         <table>
-            <?php listCourses($link); ?>
+            <?php listCourses($link, ); ?>
         </table>
     </body>
 </html>
