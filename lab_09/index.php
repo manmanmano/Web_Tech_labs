@@ -2,6 +2,14 @@
 
 include_once "dbconnection_data.php";
 
+function sanitizeInputVar($link, $var) {
+    $var = stripslashes($var);
+    $var = htmlentities($var);
+    $var = strip_tags($var);
+    $var = mysqli_real_escape_string($link, $var);
+    return $var;
+}
+
 function listCourses($link) {  
     if (!isset($_GET['semester'])) {
         $query = mysqli_prepare($link,
@@ -19,7 +27,7 @@ function listCourses($link) {
     }
 
     if (isset($_POST['submit'])) {
-        $search = $_POST['search'];
+        $search = sanitizeInputVar($link, $_POST['search']); 
         $query = mysqli_prepare($link,
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
