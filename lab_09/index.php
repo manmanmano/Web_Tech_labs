@@ -15,9 +15,18 @@ function listCourses($link) {
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID AND Semesters_ID=?;");
+            mysqli_stmt_bind_param($query, "i", $_GET['semester']);
     }
 
-    mysqli_stmt_bind_param($query, "i", $_GET['semester']);
+    if (isset($_POST['submit'])) {
+        $search = $_POST['search'];
+        $query = mysqli_prepare($link,
+            "SELECT course_code, course_name, ects_credits, semester_name
+            FROM courses AS C, semesters_201752 AS S
+            WHERE C.Semesters_ID=S.ID 
+            AND course_name LIKE '%" . $search . "%' OR course_code LIKE '%" . $search . "%';");
+            mysqli_stmt_bind_param($query, "s", $_POST['search']);
+    }
     mysqli_stmt_execute($query);
     mysqli_stmt_bind_result($query, $course_code, $course_name, $ects_credits, $semester_name);
 
@@ -37,6 +46,7 @@ function listCourses($link) {
 function listSemesters($link) {
     $query = "SELECT * FROM semesters_201752;";
     $result = mysqli_query($link, $query);
+    echo "<li><a href='index.php'>index</a></li>";
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             echo "
