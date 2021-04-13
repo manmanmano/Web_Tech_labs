@@ -10,7 +10,7 @@ function sanitizeInputVar($link, $var) {
     return $var;
 }
 
-function listCourses($link) {  
+function listCourses($link, $semester, $search, $search, $field) {  
     if (!empty($_POST['search'])) {
         setcookie("search", $search, ['path' => '~madang/Web_Technologies/lab_09/']);
         $query = mysqli_prepare($link,
@@ -131,7 +131,7 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
         <p><em>Click on the header of a specific column to get its information sorted 
                 in either ascending or descending order.</em></p>
         <table>
-            <?php listCourses($link, ); ?>
+            <?php listCourses($link, $_GET['semester'], $_POST['search'], $_GET['sortBy'], $_GET['field']); ?>
         </table>
     </body>
 </html>
