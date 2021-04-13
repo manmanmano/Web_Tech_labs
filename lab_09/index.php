@@ -2,8 +2,15 @@
 
 include_once "dbconnection_data.php";
 
-function listCourses($link, $semester, $search) {
+function sanitizeInputVar($link, $var) {
+    $var = stripslashes($var);
+    $var = htmlentities($var);
+    $var = strip_tags($var);
+    $var = mysqli_real_escape_string($link, $var);
+    return $var;
+}
 
+function listCourses($link, $semester, $search, $sort, $filter) {
     if (isset($semester)) {
         $query = mysqli_prepare($link,
             "SELECT course_code, course_name, ects_credits, semester_name
@@ -32,10 +39,10 @@ function listCourses($link, $semester, $search) {
 
     echo "
      <tr>
-        <th><a href='index.php?sortBy=&field=course_code'>Course Code</a></th>
-        <th><a href='index.php?sortBy=&field=course_name'>Course Name</a></th>
-        <th><a href='index.php?sortBy=&field=ects_credits'>Credits</a></th>
-        <th><a href='index.php?sortBy=&field=semester_name'>Semester</a></th>
+        <th><a href='index.php?sortBy=" . $sort . "&field=course_code'>Course Code</a></th>
+        <th><a href='index.php?sortBy=" . $sort . "&field=course_name'>Course Name</a></th>
+        <th><a href='index.php?sortBy=" . $sort . "&field=ects_credits'>Credits</a></th>
+        <th><a href='index.php?sortBy=" . $sort . "&field=semester_name'>Semester</a></th>
      </tr>";
 
     while (mysqli_stmt_fetch($query)){
@@ -89,7 +96,7 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
         <p><em>Click on the header of a specific column to get its information sorted
                 in either ascending or descending order.</em></p>
         <table>
-            <?php listCourses($link, $_GET['semester'], $_POST['search']); ?>
+            <?php listCourses($link, $_GET['semester'], $_POST['search'], $_GET['sortBy'], $_GET['field']); ?>
         </table>
     </body>
 </html>
