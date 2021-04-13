@@ -11,6 +11,21 @@ function sanitizeInputVar($link, $var) {
 }
 
 function listCourses($link, $semester, $search, $search, $field) {  
+
+    if (!isset($semester)) {
+        $query = mysqli_prepare($link,
+            "SELECT course_code, course_name, ects_credits, semester_name
+            FROM courses AS C, semesters_201752 AS S
+            WHERE C.Semesters_ID=S.ID
+            ORDER BY course_code ASC;");
+    } else {
+        $query = mysqli_prepare($link,
+            "SELECT course_code, course_name, ects_credits, semester_name
+            FROM courses AS C, semesters_201752 AS S
+            WHERE C.Semesters_ID=S.ID AND Semesters_ID=?;");
+            mysqli_stmt_bind_param($query, "i", $semester);
+    }
+    
     if (!empty($_POST['search'])) {
         setcookie("search", $search, ['path' => '~madang/Web_Technologies/lab_09/']);
         $query = mysqli_prepare($link,
@@ -21,20 +36,7 @@ function listCourses($link, $semester, $search, $search, $field) {
         $search = "%" . $_POST['search'] . "%";
         mysqli_stmt_bind_param($query, "ss", $search, $search);
     }
-
-    if (!isset($_GET['semester'])) {
-        $query = mysqli_prepare($link,
-            "SELECT course_code, course_name, ects_credits, semester_name
-            FROM courses AS C, semesters_201752 AS S
-            WHERE C.Semesters_ID=S.ID 
-            ORDER BY course_code ASC;");
-    } else {
-        $query = mysqli_prepare($link,  
-            "SELECT course_code, course_name, ects_credits, semester_name
-            FROM courses AS C, semesters_201752 AS S
-            WHERE C.Semesters_ID=S.ID AND Semesters_ID=?;");
-            mysqli_stmt_bind_param($query, "i", $_GET['semester']);
-    }
+ 
 
     if (isset($_GET['sortBy']) && isset($_GET['field'])) {
 
