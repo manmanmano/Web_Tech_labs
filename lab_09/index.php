@@ -10,13 +10,39 @@ function sanitizeInputVar($link, $var) {
     return $var;
 }
 
-function listCourses($link, $semester, $search, $sort, $filter) {
+function listCourses($link, $semester, $search) {
+
+    $safeSortBy = sanitizeInputVar($link, $_GET['sortBy']);
+    $safeField = sanitizeInputVar($link, $_GET['field']);
+
+    $sort = "ASC";
+    if ($safeSortBy == "ASC")
+        $sort = "DESC";
+    else 
+        $sort = "ASC";
+
+    switch($safeField) {
+        case "course_code":
+            $field = "course_code";
+            break;
+        case "course_name":
+            $field = "course_name";
+            break;
+        case "ects_credits":
+            $field = "ects_credits";
+            break;
+        case "semester_name":
+            $field = "semester_name";
+            break;
+        default: $field = "";
+    }
+
     if (isset($semester)) {
         $query = mysqli_prepare($link,
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID AND Semesters_ID=?
-            ORDER BY course_code ASC;");
+            ORDER BY  " . $field . " " . $sort . ";");
             mysqli_stmt_bind_param($query, "i", $semester);
     } else if (!empty($search)){
         $query = mysqli_prepare($link,
@@ -31,7 +57,7 @@ function listCourses($link, $semester, $search, $sort, $filter) {
         "SELECT course_code, course_name, ects_credits, semester_name
         FROM courses AS C, semesters_201752 AS S
         WHERE C.Semesters_ID=S.ID
-        ORDER BY course_code ASC;");
+        ORDER BY  " . $field . " " . $sort . ";");
     }
 
     mysqli_stmt_execute($query);
@@ -96,7 +122,7 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
         <p><em>Click on the header of a specific column to get its information sorted
                 in either ascending or descending order.</em></p>
         <table>
-            <?php listCourses($link, $_GET['semester'], $_POST['search'], $_GET['sortBy'], $_GET['field']); ?>
+            <?php listCourses($link, $_GET['semester'], $_POST['search']); ?>
         </table>
     </body>
 </html>
