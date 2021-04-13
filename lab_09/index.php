@@ -58,7 +58,8 @@ function listCourses($link, $semester, $search) {
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID
-            AND course_name LIKE ?  OR course_code LIKE ?;");
+            AND course_name LIKE ?  OR course_code LIKE ?
+            ORDER BY " . $field . " " . $sort . ";");
         $search = "%" . $search . "%";
         mysqli_stmt_bind_param($query, "ss", $search, $search);
     }
