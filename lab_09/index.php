@@ -138,7 +138,7 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
             <label for="search">Search by code or name:</label>
             <input type="text" name="search">
             <input type="submit" value="Search" name="submit"><br><br>
-            <a id="clear" href="index.php?clear">Click here to clear your search</a>
+            <a href="index.php?clear">Click here to clear your search</a>
         </form>
         <p><em>Click on the header of a specific column to get its information sorted
                 in either ascending or descending order.</em></p>
