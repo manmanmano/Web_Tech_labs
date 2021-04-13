@@ -21,7 +21,6 @@ function listCourses($link, $semester, $search) {
     else 
         $sort = "ASC";
 
-
     switch($safeField) {
         case "course_name":
             $field = "course_name";
@@ -42,7 +41,9 @@ function listCourses($link, $semester, $search) {
             WHERE C.Semesters_ID=S.ID AND Semesters_ID=?
             ORDER BY course_code ". $safeField . " " . $sort . ";");
         mysqli_stmt_bind_param($query, "i", $semester);
-    } else if (!empty($search)){
+    } 
+    else if (!empty($search)) {
+        setcookie("search", $search, ['path' => '~madang/Web_Technologies/lab_09/']);
         $query = mysqli_prepare($link,
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
@@ -50,7 +51,26 @@ function listCourses($link, $semester, $search) {
             AND course_name LIKE ?  OR course_code LIKE ?;");
         $search = "%" . $search . "%";
         mysqli_stmt_bind_param($query, "ss", $search, $search);
-    } else {
+    } 
+    else if (isset($_COOKIE['search'])) {
+        $search = $_COOKIE['search'];
+        $query = mysqli_prepare($link,
+            "SELECT course_code, course_name, ects_credits, semester_name
+            FROM courses AS C, semesters_201752 AS S
+            WHERE C.Semesters_ID=S.ID
+            AND course_name LIKE ?  OR course_code LIKE ?;");
+        $search = "%" . $search . "%";
+        mysqli_stmt_bind_param($query, "ss", $search, $search);
+    }
+    else if (empty($search)) {
+        setcookie("search", null, -1);
+        $query = mysqli_prepare($link,                                          
+        "SELECT course_code, course_name, ects_credits, semester_name           
+        FROM courses AS C, semesters_201752 AS S                                
+        WHERE C.Semesters_ID=S.ID                                               
+        ORDER BY course_code ASC;");
+    }
+    else {
         $query = mysqli_prepare($link,
         "SELECT course_code, course_name, ects_credits, semester_name
         FROM courses AS C, semesters_201752 AS S
@@ -99,6 +119,7 @@ function listSemesters($link) {
 
 $link = mysqli_connect($server, $user, $password, $database);                   
 if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
+
 ?>
 
 <!DOCTYPE html>
