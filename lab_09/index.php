@@ -2,7 +2,7 @@
 
 include_once "dbconnection_data.php";
 
-function listCourses($link, $semester) {
+function listCourses($link, $semester, $search) {
 
     if (isset($semester)) {
         $query = mysqli_prepare($link,
@@ -11,6 +11,14 @@ function listCourses($link, $semester) {
             WHERE C.Semesters_ID=S.ID AND Semesters_ID=?
             ORDER BY course_code ASC;");
             mysqli_stmt_bind_param($query, "i", $semester);
+    } else if (!empty($search)){
+        $query = mysqli_prepare($link,
+            "SELECT course_code, course_name, ects_credits, semester_name
+            FROM courses AS C, semesters_201752 AS S
+            WHERE C.Semesters_ID=S.ID
+            AND course_name LIKE ?  OR course_code LIKE ?;");
+        $search = "%" . $search . "%";
+        mysqli_stmt_bind_param($query, "ss", $search, $search);
     } else {
         $query = mysqli_prepare($link,
         "SELECT course_code, course_name, ects_credits, semester_name
@@ -24,10 +32,10 @@ function listCourses($link, $semester) {
 
     echo "
      <tr>
-        <th><a href='index.php?sortBy=" . $order . "&field=course_code'>Course Code</a></th>
-        <th><a href='index.php?sortBy=" . $order . "&field=course_name'>Course Name</a></th>
-        <th><a href='index.php?sortBy=" . $order . "&field=ects_credits'>Credits</a></th>
-        <th><a href='index.php?sortBy=" . $order . "&field=semester_name'>Semester</a></th>
+        <th><a href='index.php?sortBy=&field=course_code'>Course Code</a></th>
+        <th><a href='index.php?sortBy=&field=course_name'>Course Name</a></th>
+        <th><a href='index.php?sortBy=&field=ects_credits'>Credits</a></th>
+        <th><a href='index.php?sortBy=&field=semester_name'>Semester</a></th>
      </tr>";
 
     while (mysqli_stmt_fetch($query)){
@@ -73,8 +81,15 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
         <ul>
             <?php listSemesters($link); ?>
         </ul>
+        <form action="index.php" method="POST" name="myForm">
+            <label for="search">Search by code or name:</label>
+            <input type="text" name="search">
+            <input type="submit" value="Search" name="submit">
+        </form>
+        <p><em>Click on the header of a specific column to get its information sorted
+                in either ascending or descending order.</em></p>
         <table>
-            <?php listCourses($link, $_GET['semester']); ?>
+            <?php listCourses($link, $_GET['semester'], $_POST['search']); ?>
         </table>
     </body>
 </html>
