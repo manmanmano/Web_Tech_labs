@@ -21,10 +21,8 @@ function listCourses($link, $semester, $search) {
     else 
         $sort = "ASC";
 
+
     switch($safeField) {
-        case "course_code":
-            $field = "course_code";
-            break;
         case "course_name":
             $field = "course_name";
             break;
@@ -34,7 +32,7 @@ function listCourses($link, $semester, $search) {
         case "semester_name":
             $field = "semester_name";
             break;
-        default: $field = "";
+        default: $field = "course_code";
     }
 
     if (isset($semester)) {
@@ -42,8 +40,8 @@ function listCourses($link, $semester, $search) {
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID AND Semesters_ID=?
-            ORDER BY  " . $field . " " . $sort . ";");
-            mysqli_stmt_bind_param($query, "i", $semester);
+            ORDER BY course_code ". $safeField . " " . $sort . ";");
+        mysqli_stmt_bind_param($query, "i", $semester);
     } else if (!empty($search)){
         $query = mysqli_prepare($link,
             "SELECT course_code, course_name, ects_credits, semester_name
@@ -57,7 +55,7 @@ function listCourses($link, $semester, $search) {
         "SELECT course_code, course_name, ects_credits, semester_name
         FROM courses AS C, semesters_201752 AS S
         WHERE C.Semesters_ID=S.ID
-        ORDER BY  " . $field . " " . $sort . ";");
+        ORDER BY " . $field . " " . $sort . ";");
     }
 
     mysqli_stmt_execute($query);
