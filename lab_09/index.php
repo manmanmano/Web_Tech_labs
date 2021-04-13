@@ -10,10 +10,10 @@ function sanitizeInputVar($link, $var) {
     return $var;
 }
 
-function listCourses($link, $semester, $search, $clear) {
+function listCourses($link, $sortBy, $filterBy, $semester, $search, $clear) {
 
-    $safeSortBy = sanitizeInputVar($link, $_GET['sortBy']);
-    $safeField = sanitizeInputVar($link, $_GET['field']);
+    $safeSortBy = sanitizeInputVar($link, $sortBy);
+    $safeField = sanitizeInputVar($link, $filterBy);
 
     $sort = "ASC";
     if ($safeSortBy == "ASC")
@@ -143,7 +143,8 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
         <p><em>Click on the header of a specific column to get its information sorted
                 in either ascending or descending order.</em></p>
         <table>
-            <?php listCourses($link, $_GET['semester'], $_POST['search'], $_GET['clear']); ?>
+            <?php listCourses($link, $_GET['sortBy'], $_GET['field'], 
+                $_GET['semester'], $_POST['search'], $_GET['clear']); ?>
         </table>
     </body>
 </html>
