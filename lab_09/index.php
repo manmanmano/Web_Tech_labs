@@ -53,6 +53,14 @@ function listCourses($link, $semester, $search) {
         $search = "%" . $search . "%";
         mysqli_stmt_bind_param($query, "ss", $search, $search);
     }
+    else if (isset($_GET['clear'])) {
+        setcookie("search", null, -1);
+        $query = mysqli_prepare($link,
+        "SELECT course_code, course_name, ects_credits, semester_name
+        FROM courses AS C, semesters_201752 AS S
+        WHERE C.Semesters_ID=S.ID
+        ORDER BY course_code ASC;");
+    }
     else if (isset($_COOKIE['search'])) {
         $search = $_COOKIE['search'];
         $query = mysqli_prepare($link,
@@ -63,14 +71,6 @@ function listCourses($link, $semester, $search) {
             ORDER BY " . $field . " " . $sort . ";");
         $search = "%" . $search . "%";
         mysqli_stmt_bind_param($query, "ss", $search, $search);
-    }
-    else if (empty($search)) {
-        setcookie("search", null, -1);
-        $query = mysqli_prepare($link,
-        "SELECT course_code, course_name, ects_credits, semester_name
-        FROM courses AS C, semesters_201752 AS S
-        WHERE C.Semesters_ID=S.ID
-        ORDER BY course_code ASC;");
     }
     else {
         $query = mysqli_prepare($link,
@@ -108,7 +108,6 @@ function listCourses($link, $semester, $search) {
 function listSemesters($link) {
     $query = "SELECT * FROM semesters_201752;";
     $result = mysqli_query($link, $query);
-    echo "<li><a href='index.php'>index</a></li>";
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             echo "
@@ -138,7 +137,8 @@ if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
         <form action="index.php" method="POST" name="myForm">
             <label for="search">Search by code or name:</label>
             <input type="text" name="search">
-            <input type="submit" value="Search" name="submit">
+            <input type="submit" value="Search" name="submit"><br><br>
+            <a id="clear" href="index.php?clear">Click here to clear your search</a>
         </form>
         <p><em>Click on the header of a specific column to get its information sorted
                 in either ascending or descending order.</em></p>
