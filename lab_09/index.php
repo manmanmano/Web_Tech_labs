@@ -10,7 +10,31 @@ function sanitizeInputVar($link, $var) {
     return $var;
 }
 
-function listCourses($link, $semester, $search, $search, $field) {  
+function listCourses($link, $semester, $search, $sortBy, $filter) {  
+
+    $sortBy = sanitizeInputVar($link, $sortBy);
+    $filter = sanitizeInputVar($link, $filter);
+
+    $order = "ASC";
+    if ($sortBy == 'ASC') 
+        $order = "DESC";
+    else 
+        $order = "ASC";
+
+    switch($filter) {
+        case "course_code":
+            $field = "course_code";
+            break; 
+        case "course_name":
+            $field = "course_name";
+            break;
+        case "ects_credits":
+            $field = "ects_credits";
+            break;
+        case "semester_name":
+            $field = "semester_name";
+            break;
+        default: $field = ""; 
 
     if (!isset($semester)) {
         $query = mysqli_prepare($link,
@@ -26,62 +50,28 @@ function listCourses($link, $semester, $search, $search, $field) {
             mysqli_stmt_bind_param($query, "i", $semester);
     }
     
-    if (!empty($_POST['search'])) {
+    if (!empty($search)) {
         setcookie("search", $search, ['path' => '~madang/Web_Technologies/lab_09/']);
         $query = mysqli_prepare($link,
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID
             AND course_name LIKE ?  OR course_code LIKE ?;");
-        $search = "%" . $_POST['search'] . "%";
+        $search = "%" . $search . "%";
         mysqli_stmt_bind_param($query, "ss", $search, $search);
     }
- 
-
-    if (isset($_GET['sortBy']) && isset($_GET['field'])) {
-
-        $sort = "ASC";
-        if ($_GET['sortBy'] == 'ASC') 
-            $sort = "DESC";
-        else 
-            $sort = "ASC";
-
-        switch($_GET['field']) {
-            case "course_code":
-                $field = "course_code";
-                break; 
-            case "course_name":
-                $field = "course_name";
-                break;
-            case "ects_credits":
-                $field = "ects_credits";
-                break;
-            case "semester_name":
-                $field = "semester_name";
-                break;
-            default: $field = ""; 
-        } 
-
-        $safeSort = sanitizeInputVar($link, $sort);
-        $safeField = sanitizeInputVar($link, $field);
-        $query = mysqli_prepare($link, 
-            "SELECT course_code, course_name, ects_credits, semester_name
-            FROM courses AS C, semesters_201752 AS S
-            WHERE C.Semesters_ID=S.ID
-            ORDER BY " .  $safeField . " " .  $safeSort . ";");
-    }
-
 
     mysqli_stmt_execute($query);
     mysqli_stmt_bind_result($query, $course_code, $course_name, $ects_credits, $semester_name);
     
     echo "
      <tr>
-        <th><a href='index.php?sortBy=" . $safeSort . "&field=course_code'>Course Code</a></th>
-        <th><a href='index.php?sortBy=" . $safeSort . "&field=course_name'>Course Name</a></th>
-        <th><a href='index.php?sortBy=" . $safeSort . "&field=ects_credits'>Credits</a></th>
-        <th><a href='index.php?sortBy=" . $safeSort . "&field=semester_name'>Semester</a></th>
+        <th><a href='index.php?sortBy=" . $order . "&field=course_code'>Course Code</a></th>
+        <th><a href='index.php?sortBy=" . $order . "&field=course_name'>Course Name</a></th>
+        <th><a href='index.php?sortBy=" . $order . "&field=ects_credits'>Credits</a></th>
+        <th><a href='index.php?sortBy=" . $order . "&field=semester_name'>Semester</a></th>
      </tr>";
+
     while (mysqli_stmt_fetch($query)){
         echo "
          <tr>
