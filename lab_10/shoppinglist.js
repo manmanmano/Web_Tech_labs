@@ -1,9 +1,9 @@
 function createCookie() {
-    var username = document.myForm.username.value;
-    if (username == "") {
+    var name = document.myForm.name.value;
+    if (name === "") {
         alert("Input left blank!");
         return;
     }
-     document.cookie = "username=" + username + ";path=/~madang/Web_Technologies/lab_10/";
+    document.cookie = "name=" + name + ";path=/~madang/Web_Technologies/lab_10/;";
+    sessionStorage.setItem("name", name);
 }
-
