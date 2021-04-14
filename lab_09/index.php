@@ -39,7 +39,7 @@ function listCourses($link, $sortBy, $filterBy, $semester, $search, $clear) {
             "SELECT course_code, course_name, ects_credits, semester_name
             FROM courses AS C, semesters_201752 AS S
             WHERE C.Semesters_ID=S.ID AND Semesters_ID=?
-            ORDER BY course_code ". $safeField . " " . $sort . ";");
+            ORDER BY " . $field . " " . $sort . ";");
         mysqli_stmt_bind_param($query, "i", $semester);
     }
     else if (!empty($search)) {
