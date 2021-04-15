@@ -1,11 +1,12 @@
-var personName = prompt("Please enter your name");
+var userName = prompt("Please enter your name");
 while (true) {
-    if (personName === "") {
+    if (userName === "") {
         alert("Input left blank!");
-        personName = prompt("Please enter your name");
+        userName = prompt("Please enter your name");
     } else {
         break;
     }
 }
-document.cookie = "name=" + personName + ";path=/~madang/Web_Technologies/lab_10/;";
-sessionStorage.setItem("name", personName);
+document.cookie = "name=" + userName + ";path=/~madang/Web_Technologies/lab_10/;";
+sessionStorage.setItem("name", userName);
+document.getElementById("userName").innerHTML = userName + "'s Shopping List";
