@@ -7,7 +7,7 @@
     </head>
     <body>
         <h2 id="user"></h2>
-        <form action="index.html" method="POST" name="cartForm">
+        <form action="index.html" method="POST" name="cartForm" class="order">
             <label for="item">Item's name:</label>
             <input type="text" id="item" name="item" class="input" required>
             <label for="quantity">Quantity:</label>
@@ -20,6 +20,10 @@
                 <th>Product</th>
                 <th>Quantity</th>
             </tr>
+        </table>
+        <form action="index.html" method="POST" name="destroy">
+            <input type="submit" id="logout" name="logout" class="input" value="Logout">
+        </form>
         <script src="shoppinglist.js"></script>
     </body>
 </html>

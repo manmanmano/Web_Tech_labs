@@ -2,11 +2,27 @@
     width: 50px;
 }
 
-form {
+.order {
     border: 1px solid;
     padding: 10px;
     background-color: yellow;
     width: 52%;
+}
+
+label {
+    margin-left: 20px;
+}
+
+#submit {
+    margin-left: 20px;
+}
+
+#logout {
+    margin-top: 15px;
+}
+
+#logout:hover {
+    background-color: yellow;
 }
 
 table {
