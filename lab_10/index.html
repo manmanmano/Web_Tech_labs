@@ -3,9 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <title>Shopping List</title>
+        <link rel="stylesheet" href="styles/style.css">
     </head>
     <body>
-        <h2 id="userName"></h2>
+        <h2 id="user"></h2>
+        <form action="index.html" method="POST" name="cartForm">
+            <label for="item">Item's name:</label>
+            <input type="text" id="item" name="item" class="input" required><br><br>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" class="input" name="quantity">
+        </form>
         <script src="shoppinglist.js"></script>
     </body>
 </html>

@@ -1,17 +1,17 @@
-function checkInput(userName) {
+function checkInput(user) {
     while (true) {
-        if (userName === "") {
+        if (user === "") {
             alert("input left blank!");
-            userName = prompt("please enter your name");
+            user = prompt("please enter your name");
         } else {
             break;
         }
     }
-    return userName;
+    return user;
 }
 
-var userName = prompt("Please enter your name");
-userName = checkInput(userName);
-document.cookie = "name=" + userName + ";path=/~madang/Web_Technologies/lab_10/;";
-sessionStorage.setItem("name", userName);
-document.getElementById("userName").innerHTML = userName + "'s Shopping List";
+var user = prompt("Please enter your name");
+user = checkInput(user);
+document.cookie = "name=" + user + ";path=/~madang/Web_Technologies/lab_10/;";
+sessionStorage.setItem("name", user);
+document.getElementById("user").innerHTML = user + "'s Shopping List";
