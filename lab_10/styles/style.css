@@ -2,7 +2,7 @@
     width: 50px;
 }
 
-.order {
+#cart {
     border: 1px solid;
     padding: 10px;
     background-color: yellow;
@@ -40,3 +40,4 @@ td {
     padding-left: 10px;
     padding-right: 10px;
 }
+
