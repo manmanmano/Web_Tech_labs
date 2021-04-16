@@ -14,19 +14,17 @@
             <input type="number" step="0.1" id="quantity" class="input" 
                 name="quantity" required>
             <input type="submit" id="submit" class="input" name="submit" 
-                value="Submit" onclick="addItem()">
+                value="Submit" onsubmit="addItem()">
         </div>
-        <div id="tablout">
-            <table id="growingTable">
-                <tr>
-                    <th>No.</th>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                </tr>
-            </table>
-            <input type="submit" id="logout" name="logout" class="input" 
-                value="Logout" onclick="logout()">
-        </div>
+        <table id="growingTable">
+            <tr>
+                <th>No.</th>
+                <th>Product</th>
+                <th>Quantity</th>
+            </tr>
+        </table>
+        <input type="submit" id="logout" name="logout" class="input" 
+            value="Logout" onclick="logout()">
         <script src="shoppinglist.js"></script>
     </body>
 </html>

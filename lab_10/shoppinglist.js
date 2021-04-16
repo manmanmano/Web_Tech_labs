@@ -35,10 +35,8 @@ function addItem() {
 
     var l = JSON.parse(inList);
     cell1.innerHTML = n + ".";
-    cell2.innerHTML = item;
-    cell3.innerHTML = quantity;
-    console.log(l.Item);
-    console.log(l.Quantity);
+    cell2.innerHTML = l.Item;
+    cell3.innerHTML = l.Quantity;
 
     localStorage.setItem(sessionStorage.getItem("name") + n, inList);
 
@@ -53,5 +51,6 @@ if (document.cookie == "") {
         document.cookie = "name=" + name + "; path=/~madang/Web_Technologies/lab_10/;";
     }
 }
+
 sessionStorage.setItem("name", name);
 document.getElementById("user").innerHTML = name + "'s Shopping List";
