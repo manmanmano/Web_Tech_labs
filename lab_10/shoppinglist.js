@@ -43,6 +43,12 @@ function addItem() {
     window.location.reload(false);
 }
 
+function deleteRecord() {
+    if (confirm("Are you sure you want to delete this row?")) {
+        console.log("Success!");
+    }
+}
+
 if (document.cookie == "") {
     var name = prompt("Please enter your name: ");
     name = checkInput(name);
