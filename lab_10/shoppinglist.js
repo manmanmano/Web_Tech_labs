@@ -28,6 +28,15 @@ function addItem() {
 
     var t = document.getElementById("growingTable");
     var n = t.rows.length;
+    
+    var row = t.insertRow(n);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+
+    cell1.innerHTML = n + ".";
+    cell2.innerHTML = item;
+    cell3.innerHTML = quantity;
 
     window.location.reload(false);
 }
