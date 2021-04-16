@@ -35,12 +35,15 @@ function addItem() {
 
     var l = JSON.parse(inList);
     cell1.innerHTML = n + ".";
-    cell2.innerHTML = l.Item;
-    cell3.innerHTML = l.Quantity;
+    cell2.innerHTML = item;
+    cell3.innerHTML = quantity;
+    console.log(l.Item);
+    console.log(l.Quantity);
 
     localStorage.setItem(sessionStorage.getItem("name") + n, inList);
 
-    window.location.reload(false);
+    document.getElementById("item").value = "";
+    document.getElementById("quantity").value = "";
 }
 
 if (document.cookie == "") {
