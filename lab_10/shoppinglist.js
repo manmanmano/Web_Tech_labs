@@ -22,6 +22,13 @@ function addItem() {
         alert("Invalid input in form!");
         return;
     }
+
+    var inList = JSON.stringify({Item: item, Quantity: quantity});
+    localStorage.setItem(sessionStorage.getItem("name"), inList);
+
+    var t = document.getElementById("growingTable");
+    var n = t.rows.length;
+
     window.location.reload(false);
 }
 
