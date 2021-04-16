@@ -6,7 +6,7 @@
     border: 1px solid;
     padding: 10px;
     background-color: yellow;
-    width: 52%;
+    width: 30%;
 }
 
 label {
@@ -27,7 +27,7 @@ label {
 
 table {
     margin-top: 15px;
-    width: 54.5%;
+    width: 31.1%;
     border-collapse: collapse;
     border-spacing: 10px;
 }
