@@ -24,7 +24,6 @@ function addItem() {
     }
 
     var inList = JSON.stringify({Item: item, Quantity: quantity});
-    localStorage.setItem(sessionStorage.getItem("name"), inList);
 
     var t = document.getElementById("growingTable");
     var n = t.rows.length;
@@ -34,9 +33,12 @@ function addItem() {
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
 
+    var l = JSON.parse(inList);
     cell1.innerHTML = n + ".";
-    cell2.innerHTML = item;
-    cell3.innerHTML = quantity;
+    cell2.innerHTML = l.Item;
+    cell3.innerHTML = l.Quantity;
+
+    localStorage.setItem(sessionStorage.getItem("name") + n, inList);
 
     window.location.reload(false);
 }
