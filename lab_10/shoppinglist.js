@@ -43,9 +43,9 @@ function addItem() {
     window.location.reload(false);
 }
 
-function deleteRecord() {
+function deleteRecord(table, index) {
     if (confirm("Are you sure you want to delete this row?")) {
-        console.log("Success!");
+        table.deleteRow(index);
     }
 }
 
@@ -66,7 +66,7 @@ for (var i = 0; i < localStorage.length; i++) {
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
-    row.setAttribute("onclick", "deleteRecord()");
+    row.setAttribute("onclick", "deleteRecord(t, i)");
 
     var l = JSON.parse(localStorage.getItem(localStorage.key(i)));
     cell1.innerHTML = i + 1 + ".";
