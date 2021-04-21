@@ -26,6 +26,7 @@ function addItem() {
 
     var add = {item: item, quantity: quantity};
     cart.push(add);
+    counter = cart.length;
     var jstring = JSON.stringify(cart);
 
     localStorage.setItem(sessionStorage.getItem("name"), jstring)
@@ -59,3 +60,17 @@ sessionStorage.setItem("name", name);
 document.getElementById("user").innerHTML = name + "'s Shopping List";
 
 var cart = [];
+var counter = 0;
+
+for (var i = 0; i < counter; i++) {
+    var t = document.getElementById("growingTable");
+    var row = t.insertRow(i + 1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+
+    var l = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    cell1.innerHTML = i + 1 + ".";
+    cell2.innerHTML = l.Item;
+    cell3.innerHTML = l.Quantity;
+}
