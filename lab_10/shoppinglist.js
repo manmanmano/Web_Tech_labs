@@ -23,7 +23,12 @@ function addItem() {
         return;
     }
 
-    var inList = JSON.stringify({Item: item, Quantity: quantity});
+    var arr = [item, quantity];
+    var json = [];
+    json.push(arr);
+    var jstring = JSON.stringify(json);
+
+    localStorage.setItem(sessionStorage.getItem("name"), jstring)
 
     var t = document.getElementById("growingTable");
     var n = t.rows.length;
@@ -33,12 +38,9 @@ function addItem() {
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
 
-    var l = JSON.parse(inList);
     cell1.innerHTML = n + ".";
-    cell2.innerHTML = l.Item;
-    cell3.innerHTML = l.Quantity;
-
-    localStorage.setItem(sessionStorage.getItem("name") + n, inList);
+    cell2.innerHTML = item;
+    cell3.innerHTML = quantity;
 
     document.getElementById("item").value = "";
     document.getElementById("quantity").value = "";
