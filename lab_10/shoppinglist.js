@@ -10,6 +10,11 @@ function checkInput(user) {
     return user;
 }
 
+function logout() {
+    document.cookie = "name=''; expires=Mon, 31 Dec 2018 12:00:00 UTC; path=/~madang/Web_Technologies/lab_10/;";
+    window.location.reload(false);
+}
+
 if (document.cookie == "") {
     var name = prompt("Please enter your name: ");
     name = checkInput(name);
