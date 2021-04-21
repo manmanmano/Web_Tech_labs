@@ -40,7 +40,9 @@ function addItem() {
 
     localStorage.setItem(sessionStorage.getItem("name") + n, inList);
 
-    window.location.reload(false);
+    document.getElementById("item").value = "";
+    document.getElementById("quantity").value = "";
+
 }
 
 if (document.cookie == "") {

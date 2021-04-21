@@ -122,31 +122,27 @@ $link = mysqli_connect($server, $user, $password, $database);
 if (!$link) die ("Connection to DB failed: " . mysqli_connect_error());
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Index</title>
-        <link rel="stylesheet" type="text/css" href="styles/style.css">
-    </head>
-    <body>
-        <ul>
-            <?php listSemesters($link); ?>
-        </ul>
-        <form action="index.php" method="POST" name="myForm">
-            <label for="search">Search by code or name:</label>
-            <input type="text" name="search">
-            <input type="submit" value="Search" name="submit"><br><br>
-            <a href="index.php?clear">Click here to clear your search</a>
-        </form>
-        <p><em>Click on the header of a specific column to get its information sorted
-                in either ascending or descending order.</em></p>
-        <table>
-            <?php listCourses($link, $_GET['sortBy'], $_GET['field'], 
-                $_GET['semester'], $_POST['search'], $_GET['clear']); ?>
-        </table>
-    </body>
-</html>
-
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+<body>
+<ul><?php listSemesters($link); ?></ul>
+<form action="index.php" method="post" name="myForm" id="myForm">
+<label for="search">Search by code or name:</label> <input type=
+"text" name="search"> <input type="submit" value="Search" name=
+"submit"><br>
+<br>
+<a href="index.php?clear">Click here to clear your
+search</a></form>
+<p><em>Click on the header of a specific column to get its
+information sorted in either ascending or descending
+order.</em></p>
+<table><?php listCourses($link, $_GET['sortBy'], $_GET['field'], 
+                $_GET['semester'], $_POST['search'], $_GET['clear']); ?></table>
 <?php mysqli_close($link); ?>
+</body>
+</html>
