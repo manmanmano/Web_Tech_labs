@@ -24,7 +24,6 @@ function addItem() {
     }
 
     var arr = [item, quantity];
-    var json = [];
     json.push(arr);
     var jstring = JSON.stringify(json);
 
@@ -57,6 +56,8 @@ if (document.cookie == "") {
 
 sessionStorage.setItem("name", name);
 document.getElementById("user").innerHTML = name + "'s Shopping List";
+
+var json = [];
 
 for (var i = 0; i < localStorage.length; i++) {
     var t = document.getElementById("growingTable");
