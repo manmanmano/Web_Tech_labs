@@ -15,6 +15,15 @@ function logout() {
     window.location.reload(false);
 }
 
+function addItem() {
+    var item = document.getElementById("item").value;
+    var quantity = document.getElementById("quantity").value;
+    if (quantity == "" || item == "" || quantity < 0) {
+        alert("Invalid input in form!");
+        return;
+    }
+}
+
 if (document.cookie == "") {
     var name = prompt("Please enter your name: ");
     name = checkInput(name);
