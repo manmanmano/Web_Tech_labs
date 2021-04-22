@@ -26,7 +26,6 @@ function addItem() {
 
     var add = {item: item, quantity: quantity};
     cart.push(add);
-    counter = cart.length;
     var jstring = JSON.stringify(cart);
 
     localStorage.setItem(sessionStorage.getItem("name"), jstring)
