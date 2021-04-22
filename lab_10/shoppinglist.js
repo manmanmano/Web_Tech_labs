@@ -1,3 +1,15 @@
+function checkInput(user) {
+    while (true) {
+        if (user === "" || user === null) {
+            alert("input left blank!");
+            user = prompt("please enter your name");
+        } else {
+            break;
+        }
+    }
+    return user;
+}
+
 function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -63,9 +75,10 @@ function deleteRow(i) {
 }
 
 var name = getCookie("name");
-if (name == "") {
+if (name == "" || name == null) {
     document.getElementById("user").innerHTML = "Welcome to our page!";
     var name = prompt("Please enter your name: ");
+    name = checkInput(name);
     if (name != "" && name != null) {
         document.cookie = "name=" + name + "; path=/~madang/Web_Technologies/lab_10/;";
     }
