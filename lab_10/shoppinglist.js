@@ -66,15 +66,14 @@ if (document.cookie != "") {
 }
 
 
-for (var i = 0; i < counter; i++) {
+for (var i = 0; i < cart.length; i++) {
     var t = document.getElementById("growingTable");
     var row = t.insertRow(i + 1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
 
-    var l = JSON.parse(localStorage.getItem(localStorage.key(i)));
     cell1.innerHTML = i + 1 + ".";
-    cell2.innerHTML = l.Item;
-    cell3.innerHTML = l.Quantity;
+    cell2.innerHTML = item;
+    cell3.innerHTML = quantity;
 }
