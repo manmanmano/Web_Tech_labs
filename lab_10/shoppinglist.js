@@ -33,7 +33,7 @@ function addItem() {
     var n = t.rows.length;
     
     var row = t.insertRow(n);
-    row.setAttribute("onclick", "deleteRow(n)");
+    row.setAttribute("onclick", "deleteRow(" + n + ")");
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
@@ -76,7 +76,7 @@ for (var i = 0; i < cart.length; i++) {
     var n = t.rows.length;
     
     var row = t.insertRow(n);
-    row.setAttribute("onclick", "deleteRow(n)");
+    row.setAttribute("onclick", "deleteRow(" + n + ")");
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
