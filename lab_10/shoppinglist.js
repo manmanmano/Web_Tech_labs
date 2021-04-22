@@ -74,6 +74,6 @@ for (var i = 0; i < cart.length; i++) {
     var cell3 = row.insertCell(2);
 
     cell1.innerHTML = i + 1 + ".";
-    cell2.innerHTML = this.item;
-    cell3.innerHTML = this.quantity;
+    cell2.innerHTML = add.item; 
+    cell3.innerHTML = add.quantity;
 }
