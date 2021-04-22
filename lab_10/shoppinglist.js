@@ -65,7 +65,7 @@ if (userCart) {
     var cart = [];
 }
 
-
+var add = cart;
 for (var i = 0; i < cart.length; i++) {
     var t = document.getElementById("growingTable");
     var row = t.insertRow(i + 1);
