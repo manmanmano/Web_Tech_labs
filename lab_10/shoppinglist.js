@@ -46,7 +46,7 @@ function addItem() {
 
 }
 
-if (document.cookie == "") {
+if (document.cookie === "" || document.cookie === null) {
     var name = prompt("Please enter your name: ");
     name = checkInput(name);
     if (name != "" && name != null) {
