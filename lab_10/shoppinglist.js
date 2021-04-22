@@ -59,7 +59,7 @@ function deleteRow(i) {
 
 if (document.cookie === "" || document.cookie === null) {
     var name = prompt("Please enter your name: ");
-    name = checkInput(name);
+//    name = checkInput(name);
     if (name != "" && name != null) {
         document.cookie = "name=" + name + "; path=/~madang/Web_Technologies/lab_10/;";
     }
