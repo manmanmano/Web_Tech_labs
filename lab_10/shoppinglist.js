@@ -50,7 +50,7 @@ function addItem() {
 function deleteRow(i) {
     if (confirm("Are you really sure you want to delete this row?")) {
         document.getElementById("growingTable").deleteRow(i);
-        cart.shift(i);
+        cart.splice(i, 1);
         var jstring = JSON.stringify(cart);
         localStorage.setItem(sessionStorage.getItem("name"), jstring);
         window.location.reload(false);
