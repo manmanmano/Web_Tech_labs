@@ -58,8 +58,9 @@ if (document.cookie == "") {
 sessionStorage.setItem("name", name);
 document.getElementById("user").innerHTML = name + "'s Shopping List";
 
-if (document.cookie != "") {
-    cart = JSON.parse(localStorage.getItem(name));
+var userCart = localStorage.getItem(sessionStorage.getItem("name"));
+if (userCart) {
+    var cart = JSON.parse(userCart);
 } else {
     var cart = [];
 }
