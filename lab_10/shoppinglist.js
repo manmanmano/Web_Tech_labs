@@ -23,7 +23,6 @@ function addItem() {
         return;
     }
 
-
     var add = {item: item, quantity: quantity};
     cart.push(add);
     var jstring = JSON.stringify(cart);
@@ -66,14 +65,14 @@ if (userCart) {
 }
 
 for (var i = 0; i < cart.length; i++) {
-    var t = document.getElementById("growingTable");
     var add = cart[i];
-    var row = t.insertRow(i + 1);
+    var t = document.getElementById("growingTable");
+    var n = t.rows.length;
+    var row = t.insertRow(n);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
-
-    cell1.innerHTML = i + 1 + ".";
+    cell1.innerHTML = n + ".";
     cell2.innerHTML = add.item; 
     cell3.innerHTML = add.quantity;
 }
