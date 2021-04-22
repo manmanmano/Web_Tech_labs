@@ -47,8 +47,7 @@ function addItem() {
 
 }
 
-function deleteRow(r) {
-    var i = r.parentNode.parentNode.rowIndex;
+function deleteRow(i) {
     if (confirm("Are you really sure you want to delete this row?")) {
         document.getElementById("growingTable").deleteRow(i);
     }
