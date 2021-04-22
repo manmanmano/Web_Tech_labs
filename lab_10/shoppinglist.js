@@ -51,6 +51,9 @@ function deleteRow(i) {
     if (confirm("Are you really sure you want to delete this row?")) {
         document.getElementById("growingTable").deleteRow(i);
         cart.shift(i);
+        var jstring = JSON.stringify(cart);
+        localStorage.setItem(sessionStorage.getItem("name"), jstring);
+        window.location.reload(false);
     }
 }
 
