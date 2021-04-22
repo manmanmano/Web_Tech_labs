@@ -62,9 +62,8 @@ function deleteRow(i) {
 }
 
 var name = getCookie("name");
-if (name == "" || name == null) {
+if (name == "") {
     var name = prompt("Please enter your name: ");
-//    name = checkInput(name);
     if (name != "" && name != null) {
         document.cookie = "name=" + name + "; path=/~madang/Web_Technologies/lab_10/;";
     }
