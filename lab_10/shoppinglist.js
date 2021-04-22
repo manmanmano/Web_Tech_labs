@@ -60,7 +60,7 @@ document.getElementById("user").innerHTML = name + "'s Shopping List";
 
 var userCart = localStorage.getItem(sessionStorage.getItem("name"));
 if (userCart) {
-    var cart = JSON.parse(userCart);
+    cart = JSON.parse(userCart);
 } else {
     var cart = [];
 }
