@@ -33,6 +33,7 @@ function addItem() {
     var n = t.rows.length;
     
     var row = t.insertRow(n);
+    row.setAttribute("onclick", "deleteRow(n)");
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
@@ -44,6 +45,13 @@ function addItem() {
     document.getElementById("item").value = "";
     document.getElementById("quantity").value = "";
 
+}
+
+function deleteRow(r) {
+    var i = r.parentNode.parentNode.rowIndex;
+    if (confirm("Are you really sure you want to delete this row?")) {
+        document.getElementById("growingTable").deleteRow(i);
+    }
 }
 
 if (document.cookie === "" || document.cookie === null) {
@@ -69,6 +77,7 @@ for (var i = 0; i < cart.length; i++) {
     var n = t.rows.length;
     
     var row = t.insertRow(n);
+    row.setAttribute("onclick", "deleteRow(n)");
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
