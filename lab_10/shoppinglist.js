@@ -73,6 +73,6 @@ for (var i = 0; i < cart.length; i++) {
     var cell3 = row.insertCell(2);
 
     cell1.innerHTML = i + 1 + ".";
-    cell2.innerHTML = item;
-    cell3.innerHTML = quantity;
+    cell2.innerHTML = cart.item;
+    cell3.innerHTML = cart.quantity;
 }
