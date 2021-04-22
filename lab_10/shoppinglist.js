@@ -64,6 +64,7 @@ function deleteRow(i) {
 
 var name = getCookie("name");
 if (name == "") {
+    document.getElementById("user").innerHTML = "Welcome to our page!";
     var name = prompt("Please enter your name: ");
     if (name != "" && name != null) {
         document.cookie = "name=" + name + "; path=/~madang/Web_Technologies/lab_10/;";
