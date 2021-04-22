@@ -59,8 +59,12 @@ if (document.cookie == "") {
 sessionStorage.setItem("name", name);
 document.getElementById("user").innerHTML = name + "'s Shopping List";
 
-var cart = [];
-var counter = 0;
+if (document.cookie != "") {
+    cart = JSON.parse(localStorage.getItem(name));
+} else {
+    var cart = [];
+}
+
 
 for (var i = 0; i < counter; i++) {
     var t = document.getElementById("growingTable");
