@@ -62,7 +62,7 @@ function deleteRow(i) {
 }
 
 var name = getCookie("name");
-if (name == "") {
+if (name == "" || name == null) {
     var name = prompt("Please enter your name: ");
 //    name = checkInput(name);
     if (name != "" && name != null) {
