@@ -70,7 +70,13 @@ function deleteRow(i) {
         cart.splice(i - 1, 1);
         var jstring = JSON.stringify(cart);
         localStorage.setItem(sessionStorage.getItem("name"), jstring);
-        generateTable();
+        var t = document.getElementById("growingTable");
+        for (var i = 0; i < t.rows.length; i++) {
+            t.rows[i].cells[0].innerHTML = i + ".";
+        }
+        for (var i = 0; i < t.rows.length; i++) {
+            t.rows[i].setAttribute("onclick", "deleteRow(" + i + ")");
+        }
     }
 }
 
