@@ -70,7 +70,7 @@ function deleteRow(i) {
         cart.splice(i - 1, 1);
         var jstring = JSON.stringify(cart);
         localStorage.setItem(sessionStorage.getItem("name"), jstring);
-        window.location.reload(false);
+        generateTable();
     }
 }
 
