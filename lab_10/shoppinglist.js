@@ -71,7 +71,7 @@ function deleteRow(i) {
         var jstring = JSON.stringify(cart);
         localStorage.setItem(sessionStorage.getItem("name"), jstring);
         var t = document.getElementById("growingTable");
-        for (var i = 0; i < t.rows.length; i++) {
+        for (var i = 1; i < t.rows.length; i++) {
             t.rows[i].cells[0].innerHTML = i + ".";
             t.rows[i].setAttribute("onclick", "deleteRow(" + i + ")");
         }
