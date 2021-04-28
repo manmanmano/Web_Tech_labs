@@ -74,6 +74,23 @@ function deleteRow(i) {
     }
 }
 
+function generateTable() {
+    for (var i = 0; i < cart.length; i++) {
+        var t = document.getElementById("growingTable");
+        var n = t.rows.length;
+
+        var row = t.insertRow(n);
+        row.setAttribute("onclick", "deleteRow(" + n + ")");
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+
+        var add = cart[i];
+        cell1.innerHTML = n + ".";
+        cell2.innerHTML = add.item;
+        cell3.innerHTML = add.quantity;
+}
+
 var name = getCookie("name");
 if (name == "" || name == null) {
     document.getElementById("user").innerHTML = "Welcome to our page!";
@@ -94,18 +111,4 @@ if (userCart) {
     var cart = [];
 }
 
-for (var i = 0; i < cart.length; i++) {
-    var t = document.getElementById("growingTable");
-    var n = t.rows.length;
-    
-    var row = t.insertRow(n);
-    row.setAttribute("onclick", "deleteRow(" + n + ")");
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-
-    var add = cart[i];
-    cell1.innerHTML = n + ".";
-    cell2.innerHTML = add.item; 
-    cell3.innerHTML = add.quantity;
-}
+document.onload = generateTable(); 
