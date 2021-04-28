@@ -89,6 +89,7 @@ function generateTable() {
         cell1.innerHTML = n + ".";
         cell2.innerHTML = add.item;
         cell3.innerHTML = add.quantity;
+    }
 }
 
 var name = getCookie("name");
